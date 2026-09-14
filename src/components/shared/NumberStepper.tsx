@@ -13,7 +13,7 @@ interface NumberStepperProps {
   onChange: (value: number) => void;
   /** Nilai saat input kosong/non-angka; default = min. */
   fallback?: number;
-  /** Teks setelah input, mis. "hari" atau "juta 3-14 hari". */
+  /** Teks setelah input, mis. "hari" atau "hari (3–14 hari)". */
   trailing?: string;
   ariaMinus?: string;
   ariaPlus?: string;

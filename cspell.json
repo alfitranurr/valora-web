@@ -1,0 +1,24 @@
+{
+  "version": "0.2",
+  "language": "en,id",
+  "allowCompoundWords": false,
+  "caseSensitive": false,
+  "dictionaries": ["id-id"],
+  "languageSettings": [
+    {
+      "languageId": "*",
+      "locale": "id,en",
+      "caseSensitive": false,
+      "dictionaries": ["id-id"]
+    }
+  ],
+  "words": [
+    "angka", "atas", "juta", "kosong", "kontrol", "kurangi",
+    "nilai", "otomatis", "saat", "setelah", "tambah", "teks",
+    "untuk", "hari", "atau"
+  ],
+  "ignorePaths": [
+    "node_modules/**", ".next/**", "package-lock.json",
+    "public/**", "supabase/schema.sql", ".env*"
+  ]
+}
