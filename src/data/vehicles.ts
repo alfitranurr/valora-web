@@ -1,13 +1,13 @@
 import type { Vehicle } from "@/types";
+import { catalogIDR } from "@/lib/pricing";
 
-export const vehicles: Vehicle[] = [
+const rawVehicles: Array<Omit<Vehicle, "priceIDR">> = [
   {
     id: "vito",
     name: "Mercedes-Benz Vito VIP",
     capacity: "4-6 Seats",
     seatRange: "4-6",
     priceUSD: 173,
-    priceIDR: 2800000,
     unit: "per hari",
     image:
       "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1000&q=80",
@@ -25,7 +25,6 @@ export const vehicles: Vehicle[] = [
     capacity: "12-15 Seats",
     seatRange: "12-15",
     priceUSD: 232,
-    priceIDR: 3762500,
     unit: "per hari",
     image:
       "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
@@ -43,7 +42,6 @@ export const vehicles: Vehicle[] = [
     capacity: "20-28 Seats",
     seatRange: "20-28",
     priceUSD: 302,
-    priceIDR: 4900000,
     unit: "per hari",
     image:
       "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1000&q=80",
@@ -61,7 +59,6 @@ export const vehicles: Vehicle[] = [
     capacity: "30-45 Seats",
     seatRange: "30-45",
     priceUSD: 464,
-    priceIDR: 7525000,
     unit: "per hari",
     image:
       "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
@@ -74,6 +71,11 @@ export const vehicles: Vehicle[] = [
     ],
   },
 ];
+
+export const vehicles: Vehicle[] = rawVehicles.map((item) => ({
+  ...item,
+  priceIDR: catalogIDR(item.priceUSD),
+}));
 
 export const customTripDestinations = [
   "Istanbul",

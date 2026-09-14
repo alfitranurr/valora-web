@@ -20,7 +20,13 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Valora Tour & Travel — Private Tour Turki untuk Wisatawan Indonesia",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  ),
+  title: {
+    default: "Valora Tour & Travel — Private Tour Turki untuk Wisatawan Indonesia",
+    template: "%s — Valora Tour & Travel",
+  },
   description:
     "Private tour Turki dengan guide berlisensi, armada VIP Mercedes-Benz, itinerary fleksibel, dan harga transparan.",
   keywords: [
@@ -34,7 +40,10 @@ export const metadata: Metadata = {
     "tour guide Indonesia Turki",
   ],
   openGraph: {
-    title: "Valora Tour & Travel — Private Tour Turki untuk Wisatawan Indonesia",
+    title: {
+      default: "Valora Tour & Travel — Private Tour Turki untuk Wisatawan Indonesia",
+      template: "%s — Valora Tour & Travel",
+    },
     description:
       "Private tour Turki dengan guide berlisensi, armada VIP Mercedes-Benz, itinerary fleksibel, dan harga transparan.",
     type: "website",

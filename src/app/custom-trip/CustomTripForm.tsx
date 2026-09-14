@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Check, ChevronLeft, ChevronRight, Minus, Plus, MapPin, Route } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, MapPin, Route } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/shared/Button";
+import { NumberStepper } from "@/components/shared/NumberStepper";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { vehicles, customTripDestinations, customTripPopularRoute } from "@/data/vehicles";
 import { formatPriceIDR, formatPriceUSD } from "@/lib/currency";
@@ -271,38 +272,16 @@ export function CustomTripForm() {
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-charcoal mb-2">
-                Perkiraan Durasi (hari)
-              </label>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => update("duration", Math.max(3, data.duration - 1))}
-                  className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                  aria-label="Kurangi durasi"
-                >
-                  <Minus className="w-4 h-4" />
-                </button>
-                <input
-                  type="number"
-                  value={data.duration}
-                  min={3}
-                  max={14}
-                  onChange={(e) =>
-                    update("duration", Math.max(3, Math.min(14, parseInt(e.target.value) || 7)))
-                  }
-                  className="w-16 text-center font-medium border border-border-warm rounded-lg py-2 focus:outline-none focus:border-terracotta"
-                />
-                <button
-                  onClick={() => update("duration", Math.min(14, data.duration + 1))}
-                  className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                  aria-label="Tambah durasi"
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
-                <span className="text-sm text-warm-grey">hari (3–14 hari)</span>
-              </div>
-            </div>
+            <NumberStepper
+              label="Perkiraan Durasi (hari)"
+              id="custom-duration"
+              value={data.duration}
+              min={3}
+              max={14}
+              fallback={7}
+              onChange={(v) => update("duration", v)}
+              trailing="hari (3–14 hari)"
+            />
 
             <div>
               <label htmlFor="date" className="block text-sm font-medium text-charcoal mb-2">
@@ -335,71 +314,26 @@ export function CustomTripForm() {
               </p>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-charcoal mb-2">
-                Jumlah Dewasa (Adults)
-              </label>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => update("adults", Math.max(1, data.adults - 1))}
-                  className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                  aria-label="Kurangi dewasa"
-                >
-                  <Minus className="w-4 h-4" />
-                </button>
-                <input
-                  type="number"
-                  value={data.adults}
-                  min={1}
-                  max={50}
-                  onChange={(e) =>
-                    update("adults", Math.max(1, Math.min(50, parseInt(e.target.value) || 1)))
-                  }
-                  className="w-16 text-center font-medium border border-border-warm rounded-lg py-2 focus:outline-none focus:border-terracotta"
-                />
-                <button
-                  onClick={() => update("adults", Math.min(50, data.adults + 1))}
-                  className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                  aria-label="Tambah dewasa"
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
-                <span className="text-sm text-warm-grey">orang</span>
-              </div>
-            </div>
+            <NumberStepper
+              label="Jumlah Dewasa (Adults)"
+              id="custom-adults"
+              value={data.adults}
+              min={1}
+              max={50}
+              onChange={(v) => update("adults", v)}
+              trailing="orang"
+            />
 
-            <div>
-              <label className="block text-sm font-medium text-charcoal mb-2">
-                Jumlah Anak / Balita (Children)
-              </label>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => update("children", Math.max(0, data.children - 1))}
-                  className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                  aria-label="Kurangi anak"
-                >
-                  <Minus className="w-4 h-4" />
-                </button>
-                <input
-                  type="number"
-                  value={data.children}
-                  min={0}
-                  max={50}
-                  onChange={(e) =>
-                    update("children", Math.max(0, Math.min(50, parseInt(e.target.value) || 0)))
-                  }
-                  className="w-16 text-center font-medium border border-border-warm rounded-lg py-2 focus:outline-none focus:border-terracotta"
-                />
-                <button
-                  onClick={() => update("children", Math.min(50, data.children + 1))}
-                  className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                  aria-label="Tambah anak"
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
-                <span className="text-sm text-warm-grey">anak</span>
-              </div>
-            </div>
+            <NumberStepper
+              label="Jumlah Anak / Balita (Children)"
+              id="custom-children"
+              value={data.children}
+              min={0}
+              max={50}
+              fallback={0}
+              onChange={(v) => update("children", v)}
+              trailing="anak"
+            />
           </div>
         )}
 

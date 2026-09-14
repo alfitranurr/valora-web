@@ -1,10 +1,10 @@
-import { SectionHeader } from "@/components/shared/SectionHeader";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { Estimator } from "@/components/estimator/Estimator";
+import { Estimator } from "./Estimator";
 import { KursDisplay } from "@/components/shared/KursDisplay";
 
 export const metadata = {
-  title: "Pesan Trip — Valora Tour & Travel",
+  title: "Pesan Trip",
   description:
     "Pilih layanan, sesuaikan perjalanan, lihat estimasi biaya, dan kirim request ke Admin Valora untuk konfirmasi.",
 };
@@ -12,22 +12,16 @@ export const metadata = {
 export default function KalkulatorPage() {
   return (
     <div className="bg-ivory">
-      <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="Booking"
-              title="Pilih Layanan, Lihat Estimasi, Kirim Request"
-              description="Pilih layanan, sesuaikan detail, dan lihat estimasi instan dalam USD, EUR, dan IDR. Lalu kirim request ke Admin Valora untuk konfirmasi."
-            />
-          </RevealOnScroll>
-          <RevealOnScroll delay={120} y={12}>
-            <p className="mt-4 text-sm text-warm-grey">
-              <KursDisplay /> · Estimasi awal — harga final dikonfirmasi oleh Admin Valora.
-            </p>
-          </RevealOnScroll>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Booking"
+        title="Pilih Layanan, Lihat Estimasi, Kirim Request"
+        description="Pilih layanan, sesuaikan detail, dan lihat estimasi instan dalam USD, EUR, dan IDR. Lalu kirim request ke Admin Valora untuk konfirmasi."
+        below={
+          <p className="mt-4 text-sm text-warm-grey">
+            <KursDisplay /> · Estimasi awal — harga final dikonfirmasi oleh Admin Valora.
+          </p>
+        }
+      />
 
       <section className="py-12 md:py-16 pb-24 lg:pb-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

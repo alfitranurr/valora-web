@@ -202,19 +202,27 @@ npm run start     # produksi (tambah -p <port> lewat "npm run start -- -p 3005" 
 ```
 src/
   app/
-    page.tsx, destinasi/, tour-packages/, services/, bundles/, kustom: kalkulator/, custom-trip/, pembayaran/
+    page.tsx, destinasi/, tour-packages/, services/, bundles/,
+    kalkulator/          # + Estimator.tsx (client, colocated — dipakai hanya di sini)
+    custom-trip/         # + CustomTripForm.tsx (client, colocated)
+    pembayaran/, about-us/, faq/, ketentuan/
     booking/[id]/            # halaman status customer + upload bukti
     admin/                   # panel admin (login, list, detail, actions)
     api/kurs/                # kurs live 3 sumber + fallback
     api/booking/[id]/proof/  # upload bukti multipart
-  components/{layout,cards,home,shared,custom-trip,estimator}/
-  data/          # config.ts (kontak + payments), packages, services, dst. (semua statis)
-  lib/           # whatsapp.ts, auth.ts, currency.ts, booking-status.ts
+  components/
+    layout/, cards/, home/
+    shared/                  # PageHeader, NumberStepper, CopyButton, dll.
+    shared/catalog/          # useCatalogFilters + Search/Select/TagToggle/CountBar/EmptyState
+  data/          # config.ts (kontak + payments), packages, services, dst.
+                 # data file menyimpan priceUSD; priceIDR diturunkan via lib/pricing
+  lib/           # whatsapp.ts, auth.ts, currency.ts, booking-status.ts, pricing.ts
   lib/supabase/  # server.ts (service-role client)
   lib/store/     # bookings.ts (akses DB; satu pintu)
   types/         # index.ts
 supabase/schema.sql
 .env.local.example
+PROGRESS.md     # dokumen invariand ini
 ```
 
 ---
@@ -229,16 +237,38 @@ supabase/schema.sql
 | 4 | Deploy Vercel (import repo, set env vars `NEXT_PUBLIC_SITE_URL`, dst.) | User + AI | PENDING |
 | 5 | Isi kebijakan refund/reschedule final di `/pembayaran` | User | PENDING |
 | 6 | P0 funnel fix: pre-select kalkulator, sessionStorage, tracking, `min=today` | AI | PENDING |
-| 7 | Halaman trust: testimoni, FAQ, T&C | AI | PENDING |
-| 8 | SEO: `generateMetadata` 3 detail + sitemap + robots + JSON-LD | AI | PENDING |
-| 9 | Konsistensi `priceIDR` + logika estimator `per paket` | AI | PENDING |
+| 7 | Halaman trust: testimoni, FAQ, T&C | AI | SEBAGIAN — `/faq`, `/ketentuan`, `/pembayaran` ada; perlu isi konten asli + testimoni/galeri |
+| 8 | SEO: `generateMetadata` 3 detail + sitemap + robots + JSON-LD | AI | PENDING (title.template + metadataBase ✔ lihat §11) |
+| 9 | Konsistensi `priceIDR` + logika estimator `per paket` | AI | SEBAGIAN — priceIDR ✔ derivasi via `lib/pricing.ts`; bug estimator (duration × paket) masih PENDING |
 | 10 | Halaman 404/error/loading custom | AI | PENDING |
-| 11 | Hapus `public/test-vision.jpg` (file tes lama) | AI | PENDING |
+| 11 | Hapus `public/test-vision.jpg` (file tes lama) | AI | DONE (file sudah tidak ada) |
 | 12 | Upgrade opsional: gateway otomatis (Midtrans/Tripay) + webhook | Belum diputuskan | — |
 
 ### Catatan lingkungan kerja
 - **Keterbatasan model chat sesi ini** (GLM 5.2 Flash): tidak menerima input gambar, jadi semua verifikasi visual (screenshot layar) harus dilakukan user, atau dengan tool eksternal. Screenshot headless Chrome tetap bisa dibuat:
   `& "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new --disable-gpu --window-size=1440,900 --screenshot="out.png" http://localhost:3000`
 - Dev server user biasanya jalan di `:3000` — jangan pakai port itu untuk uji; pakai `:3005` lalu dimatikan setelah uji.
+
+## 11. Sesi Refactor Besar (14 Sep 2026) — selesai
+
+Refactor maintenance untuk jangka panjang; net **−338 baris** (+396/−734). Verifikasi: lint 0, build sukses, smoke 11 halaman 200.
+
+**Shared components baru (`src/components/shared/`):**
+- `PageHeader.tsx` — shell header halaman seragam; menggantikan blok `section + container + RevealOnScroll + SectionHeader` yang sebelumnya disalin di 10 halaman. Dipakai: `<PageHeader eyebrow title description below? />` (untuk halaman ber-bawah kurs: `/kalkulator`, `/custom-trip` pakai prop `below`).
+- `NumberStepper.tsx` — kontrol Plus/Minus/input angka; menggantikan 6 blok duplikat di `Estimator` & `CustomTripForm`.
+- `shared/catalog/useCatalogFilters.ts` — hook state pencarian + toggle best-seller + sorting (filter khusus per katalog tetap di client masing-masing).
+- `shared/catalog/` UI: `CatalogSearch`, `CatalogSelect` (generic + ikon clock/sliders), `CatalogTagToggle`, `CountBar`, `EmptyState`.
+
+**Konvensi baru (penting untuk perawatan):**
+- Halaman baru = `PageHeader` + konten; JANGAN copy-paste shell section lagi.
+- Filter/sort katalog = wiring `useCatalogFilters` + komponen catalog, bukan menyalin UI.
+- Stepper angka = `<NumberStepper>` (clamp, fallback, aria otomatis).
+- Harga katalog: data file **hanya menyimpan `priceUSD`** — `priceIDR` selalu diturunkan via `lib/pricing.ts: catalogIDR()` (rate tunggal: `SITE_CONFIG.exchangeRate.USD_IDR`). Konsekuensi: IDR katalog kini konsisten (mis. $211 → Rp 3.719.930).
+- Metadata: judul halaman pendek ("FAQ", "Layanan", dst.) — sufiks `— Valora Tour & Travel` datang dari `title.template` di `app/layout.tsx` (juga `openGraph.title.template`); `metadataBase` dari `NEXT_PUBLIC_SITE_URL`.
+- Link WhatsApp dibuat via `lib/whatsapp.ts`; dilarang bangun URL `wa.me` inline (sisa inline sudah 0).
+- Komponen khusus satu halaman colocated: `app/custom-trip/CustomTripForm.tsx`, `app/kalkulator/Estimator.tsx` (folder `components/custom-trip` & `components/estimator` dihapus).
+- Navbar tambah item "Home" (pertama) — pelengkap navigasi balik.
+
+**File kunci vs sebelumnya:** `currency.ts` (alias format), `data/*.ts` (raw* array → derive priceIDR), `layout.tsx` (template), `Navbar.tsx` (Home).
 
 — akhir laporan.

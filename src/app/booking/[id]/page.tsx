@@ -40,7 +40,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   return {
-    title: `Booking ${id} — Valora Tour & Travel`,
+    title: `Booking ${id}`,
     robots: { index: false, follow: false },
   };
 }

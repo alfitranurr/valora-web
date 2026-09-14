@@ -1,6 +1,5 @@
-import { SectionHeader } from "@/components/shared/SectionHeader";
-import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { services } from "@/data/services";
+import { PageHeader } from "@/components/shared/PageHeader";
 import type { ServiceCategory } from "@/types";
 import ServicesClient from "./ServicesClient";
 
@@ -13,7 +12,7 @@ const categories: { id: "all" | ServiceCategory; label: string }[] = [
 ];
 
 export const metadata = {
-  title: "Layanan — Valora Tour & Travel",
+  title: "Layanan",
   description:
     "Tour guide berlisensi, airport assistance, armada VIP Mercedes-Benz, fotografer profesional, dan driver pribadi untuk perjalanan Turki Anda.",
 };
@@ -21,17 +20,11 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <div className="bg-ivory">
-      <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="Services"
-              title="Katalog Layanan Valora"
-              description="Setiap layanan bersifat private — hanya untuk Anda dan grup Anda. Gunakan kategori, pencarian, dan sorting untuk menemukan yang cocok."
-            />
-          </RevealOnScroll>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Services"
+        title="Katalog Layanan Valora"
+        description="Setiap layanan bersifat private — hanya untuk Anda dan grup Anda. Gunakan kategori, pencarian, dan sorting untuk menemukan yang cocok."
+      />
 
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

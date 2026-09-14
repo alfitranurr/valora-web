@@ -3,7 +3,7 @@ import { ShoppingBag, MessageCircle, Route } from "lucide-react";
 import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { KursDisplay } from "@/components/shared/KursDisplay";
-import { SITE_CONFIG } from "@/data/config";
+import { generalConsultationUrl } from "@/lib/whatsapp";
 
 export function FinalCTA() {
   return (
@@ -41,9 +41,7 @@ export function FinalCTA() {
                   Rancang Custom Trip
                 </Link>
                 <a
-                  href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-                    "Halo Admin Valora Tour, saya ingin konsultasi perjalanan ke Turki."
-                  )}`}
+                  href={generalConsultationUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-terracotta text-white font-semibold rounded-lg px-6 py-3.5 text-sm shadow-sm transition-all duration-300 ease-out hover:bg-terracotta-dark hover:shadow-md active:scale-[0.97]"

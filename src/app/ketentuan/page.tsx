@@ -1,10 +1,10 @@
-import { SectionHeader } from "@/components/shared/SectionHeader";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { SITE_CONFIG } from "@/data/config";
 
 export const metadata = {
-  title: "Syarat & Ketentuan — Valora Tour & Travel",
+  title: "Syarat & Ketentuan",
   description:
     "Syarat dan ketentuan layanan Valora Tour: booking, DP dan pelunasan, pembatalan, refund, tanggung jawab operator, dan pasal umum.",
 };
@@ -58,17 +58,11 @@ const sections: { title: string; items: string[] }[] = [
 export default function KetentuanPage() {
   return (
     <div className="bg-ivory">
-      <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="Informasi"
-              title="Syarat & Ketentuan Layanan"
-              description="Ketentuan dasar layanan tur Valora: booking, pembayaran, pembatalan, refund, tanggung jawab, dan kewajiban customer."
-            />
-          </RevealOnScroll>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Informasi"
+        title="Syarat & Ketentuan Layanan"
+        description="Ketentuan dasar layanan tur Valora: booking, pembayaran, pembatalan, refund, tanggung jawab, dan kewajiban customer."
+      />
 
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 space-y-6">

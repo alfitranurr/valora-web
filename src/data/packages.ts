@@ -1,6 +1,7 @@
 import type { TourPackage } from "@/types";
+import { catalogIDR } from "@/lib/pricing";
 
-export const tourPackages: TourPackage[] = [
+const rawPackages: Array<Omit<TourPackage, "priceIDR">> = [
   {
     id: "istanbul-classical",
     slug: "istanbul-classical-bosphorus-tour",
@@ -10,7 +11,6 @@ export const tourPackages: TourPackage[] = [
     durationDays: 1,
     capacity: "1–6 Orang (Private Vito)",
     priceUSD: 211,
-    priceIDR: 3412500,
     unit: "per paket (1 armada s/d 6 pax)",
     image:
       "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1000&q=80",
@@ -32,7 +32,6 @@ export const tourPackages: TourPackage[] = [
     durationDays: 1,
     capacity: "1–6 Orang (Private Vito)",
     priceUSD: 248,
-    priceIDR: 4025000,
     unit: "per paket (1 armada s/d 6 pax)",
     image:
       "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1000&q=80",
@@ -54,7 +53,6 @@ export const tourPackages: TourPackage[] = [
     durationDays: 1,
     capacity: "1–6 Orang (Private Vito)",
     priceUSD: 281,
-    priceIDR: 4550000,
     unit: "per paket (1 armada s/d 6 pax)",
     image:
       "https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=1000&q=80",
@@ -76,7 +74,6 @@ export const tourPackages: TourPackage[] = [
     durationDays: 2,
     capacity: "1–6 Orang (Private Vito)",
     priceUSD: 389,
-    priceIDR: 6300000,
     unit: "per paket (Private Vito 2 Hari)",
     image:
       "https://images.unsplash.com/photo-1774429307435-35651939a7a9?auto=format&fit=crop&w=1000&q=80",
@@ -98,7 +95,6 @@ export const tourPackages: TourPackage[] = [
     durationDays: 1,
     capacity: "1–6 Orang (Private Vito)",
     priceUSD: 302,
-    priceIDR: 4900000,
     unit: "per paket (Private Vito)",
     image:
       "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80",
@@ -111,6 +107,11 @@ export const tourPackages: TourPackage[] = [
     ],
   },
 ];
+
+export const tourPackages: TourPackage[] = rawPackages.map((item) => ({
+  ...item,
+  priceIDR: catalogIDR(item.priceUSD),
+}));
 
 export function getPackageBySlug(slug: string): TourPackage | undefined {
   return tourPackages.find((p) => p.slug === slug);

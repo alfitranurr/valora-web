@@ -1,12 +1,13 @@
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { TourPackagesClient } from "./TourPackagesClient";
 import { tourPackages } from "@/data/packages";
 import { BundleCard } from "@/components/cards/BundleCard";
 import { bundles } from "@/data/bundles";
 
 export const metadata = {
-  title: "Paket Tour Turki — Valora Tour & Travel",
+  title: "Paket Tour Turki",
   description:
     "Paket tur all-inclusive ke Istanbul, Bursa, Cappadocia, dan Pamukkale dengan armada private Mercedes-Benz dan guide berlisensi.",
 };
@@ -14,17 +15,11 @@ export const metadata = {
 export default function TourPackagesPage() {
   return (
     <div className="bg-ivory">
-      <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="Tour Packages"
-              title="Paket Tur Pilihan ke Destinasi Terbaik Turki"
-              description="Tur all-inclusive dengan armada private Mercedes-Benz Vito. Filter per destinasi, pencarian, sorting harga dan durasi dalam sekali klik."
-            />
-          </RevealOnScroll>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Tour Packages"
+        title="Paket Tur Pilihan ke Destinasi Terbaik Turki"
+        description="Tur all-inclusive dengan armada private Mercedes-Benz Vito. Filter per destinasi, pencarian, sorting harga dan durasi dalam sekali klik."
+      />
 
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

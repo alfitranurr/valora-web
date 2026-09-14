@@ -1,11 +1,11 @@
-import { SectionHeader } from "@/components/shared/SectionHeader";
 import { BundleCard } from "@/components/cards/BundleCard";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { bundles } from "@/data/bundles";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 
 export const metadata = {
-  title: "Bundle Paket Hemat — Valora Tour & Travel",
+  title: "Bundle Paket Hemat",
   description:
     "Kombinasi layanan tour guide, transport VIP, fotografer, dan airport assistance dengan harga hemat.",
 };
@@ -13,17 +13,11 @@ export const metadata = {
 export default function BundlesPage() {
   return (
     <div className="bg-ivory">
-      <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="Bundles"
-              title="Paket Kombinasi Layanan"
-              description="Solusi paling praktis dan mewah. Dapatkan guide, armada VIP, dan fotografer dalam satu paket — lebih hemat dibanding pesan satuan."
-            />
-          </RevealOnScroll>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Bundles"
+        title="Paket Kombinasi Layanan"
+        description="Solusi paling praktis dan mewah. Dapatkan guide, armada VIP, dan fotografer dalam satu paket — lebih hemat dibanding pesan satuan."
+      />
 
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

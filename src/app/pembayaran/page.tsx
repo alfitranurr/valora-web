@@ -1,4 +1,4 @@
-import { SectionHeader } from "@/components/shared/SectionHeader";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { CopyButton } from "@/components/shared/CopyButton";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
@@ -7,7 +7,7 @@ import { SITE_CONFIG } from "@/data/config";
 import { Banknote, Landmark, QrCode, ClipboardCheck } from "lucide-react";
 
 export const metadata = {
-  title: "Kebijakan Pembayaran — Valora Tour & Travel",
+  title: "Kebijakan Pembayaran",
   description:
     "Cara pembayaran booking Valora Tour: transfer bank atau QRIS. Skema DP dan pelunasan, verifikasi maksimal 1x24 jam.",
 };
@@ -48,17 +48,11 @@ export default function PembayaranPage() {
 
   return (
     <div className="bg-ivory">
-      <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="Pembayaran"
-              title="Kebijakan & Cara Pembayaran"
-              description={`Semua pembayaran dilakukan melalui transfer bank atau QRIS dengan verifikasi manual oleh Admin. Booking dikonfirmasi setelah DP ${payments.depositPercent}% diterima.`}
-            />
-          </RevealOnScroll>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Pembayaran"
+        title="Kebijakan & Cara Pembayaran"
+        description={`Semua pembayaran dilakukan melalui transfer bank atau QRIS dengan verifikasi manual oleh Admin. Booking dikonfirmasi setelah DP ${payments.depositPercent}% diterima.`}
+      />
 
       {/* Alur pembayaran */}
       <section className="py-12 md:py-16">

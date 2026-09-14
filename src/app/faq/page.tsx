@@ -1,4 +1,4 @@
-import { SectionHeader } from "@/components/shared/SectionHeader";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import { ChevronDown, MessageCircle } from "lucide-react";
 import { SITE_CONFIG } from "@/data/config";
 
 export const metadata = {
-  title: "FAQ — Pertanyaan Umum Tur Turki — Valora Tour & Travel",
+  title: "FAQ — Pertanyaan Umum Tur Turki",
   description:
     "FAQ lengkap tentang private tour Turki: cara booking, DP dan pembayaran, visum WNI, guide berbahasa Indonesia, armada VIP, pembatalan, dan refund.",
 };
@@ -65,17 +65,11 @@ const faqs: { q: string; a: string }[] = [
 export default function FAQPage() {
   return (
     <div className="bg-ivory">
-      <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="FAQ"
-              title="Pertanyaan yang Sering Diajukan"
-              description="Jawaban ringkas tentang booking, pembayaran, visum, armada, dan kebijakan pembatalan. Pertanyaan spesifik selalu via WhatsApp."
-            />
-          </RevealOnScroll>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="FAQ"
+        title="Pertanyaan yang Sering Diajukan"
+        description="Jawaban ringkas tentang booking, pembayaran, visum, armada, dan kebijakan pembatalan. Pertanyaan spesifik selalu via WhatsApp."
+      />
 
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

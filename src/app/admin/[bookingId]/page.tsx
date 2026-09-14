@@ -27,7 +27,7 @@ import {
 } from "@/lib/booking-status";
 
 export const metadata: Metadata = {
-  title: "Detail Booking — Admin Valora",
+  title: "Detail Booking",
   robots: { index: false, follow: false },
 };
 

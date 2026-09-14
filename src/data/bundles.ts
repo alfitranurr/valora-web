@@ -1,6 +1,7 @@
 import type { Bundle } from "@/types";
+import { catalogIDR } from "@/lib/pricing";
 
-export const bundles: Bundle[] = [
+const rawBundles: Array<Omit<Bundle, "priceIDR">> = [
   {
     id: "all-in-one-istanbul",
     slug: "all-in-one-istanbul-explorer",
@@ -11,7 +12,6 @@ export const bundles: Bundle[] = [
     duration: "1 Hari (10 Jam)",
     capacity: "1–6 Penumpang",
     priceUSD: 389,
-    priceIDR: 6300000,
     unit: "per hari bundle",
     image:
       "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1000&q=80",
@@ -33,7 +33,6 @@ export const bundles: Bundle[] = [
     duration: "Arrival + 5 Jam Tur",
     capacity: "1–6 Penumpang",
     priceUSD: 243,
-    priceIDR: 3937500,
     unit: "per paket combo",
     image:
       "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1000&q=80",
@@ -54,7 +53,6 @@ export const bundles: Bundle[] = [
     duration: "2 Hari Penuh",
     capacity: "1–6 Penumpang",
     priceUSD: 583,
-    priceIDR: 9450000,
     unit: "per paket 2 hari",
     image:
       "https://images.unsplash.com/photo-1774429307435-35651939a7a9?auto=format&fit=crop&w=1000&q=80",
@@ -66,6 +64,11 @@ export const bundles: Bundle[] = [
     bestSeller: true,
   },
 ];
+
+export const bundles: Bundle[] = rawBundles.map((item) => ({
+  ...item,
+  priceIDR: catalogIDR(item.priceUSD),
+}));
 
 export function getBundleBySlug(slug: string): Bundle | undefined {
   return bundles.find((b) => b.slug === slug);

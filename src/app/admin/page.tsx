@@ -11,7 +11,7 @@ import { STATUS_LABEL, STATUS_STYLE, formatDateID } from "@/lib/booking-status";
 import type { Booking } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Admin — Valora Tour & Travel",
+  title: "Admin",
   robots: { index: false, follow: false },
 };
 

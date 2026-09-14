@@ -1,6 +1,7 @@
 import type { Service } from "@/types";
+import { catalogIDR } from "@/lib/pricing";
 
-export const services: Service[] = [
+const rawServices: Array<Omit<Service, "priceIDR">> = [
   {
     id: "guide-full-day",
     slug: "tour-guide-full-day",
@@ -14,7 +15,6 @@ export const services: Service[] = [
     duration: "10 Jam",
     capacity: "1–15 Orang",
     priceUSD: 151,
-    priceIDR: 2450000,
     unit: "per hari (10 jam)",
     image:
       "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1000&q=80",
@@ -44,7 +44,6 @@ export const services: Service[] = [
     duration: "5 Jam",
     capacity: "1–15 Orang",
     priceUSD: 92,
-    priceIDR: 1487500,
     unit: "per trip (5 jam)",
     image:
       "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1000&q=80",
@@ -73,7 +72,6 @@ export const services: Service[] = [
     duration: "Saat Kedatangan",
     capacity: "Rombongan Keluarga / Group",
     priceUSD: 76,
-    priceIDR: 1225000,
     unit: "per penjemputan",
     image:
       "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80",
@@ -103,7 +101,6 @@ export const services: Service[] = [
     duration: "Saat Kedatangan",
     capacity: "Rombongan / Keluarga",
     priceUSD: 76,
-    priceIDR: 1225000,
     unit: "per penjemputan",
     image:
       "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=1000&q=80",
@@ -131,7 +128,6 @@ export const services: Service[] = [
     duration: "Saat Kedatangan",
     capacity: "Sesuai Ukuran Rombongan",
     priceUSD: 70,
-    priceIDR: 1137500,
     unit: "per transfer",
     image:
       "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=1000&q=80",
@@ -160,7 +156,6 @@ export const services: Service[] = [
     duration: "3 Jam Sesi",
     capacity: "Solo, Couple, atau Keluarga",
     priceUSD: 130,
-    priceIDR: 2100000,
     unit: "per sesi (3 jam)",
     image:
       "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1000&q=80",
@@ -190,7 +185,6 @@ export const services: Service[] = [
     duration: "10 Jam / Hari",
     capacity: "4–6 Penumpang",
     priceUSD: 167,
-    priceIDR: 2712500,
     unit: "per hari (10 jam)",
     image:
       "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1000&q=80",
@@ -220,7 +214,6 @@ export const services: Service[] = [
     duration: "10 Jam / Hari",
     capacity: "12–15 Penumpang",
     priceUSD: 232,
-    priceIDR: 3762500,
     unit: "per hari (10 jam)",
     image:
       "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
@@ -249,7 +242,6 @@ export const services: Service[] = [
     duration: "10 Jam",
     capacity: "Mengemudikan Armada Pilihan Anda",
     priceUSD: 86,
-    priceIDR: 1400000,
     unit: "per hari (10 jam)",
     image:
       "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=80",
@@ -277,7 +269,6 @@ export const services: Service[] = [
     duration: "10 Jam / Hari",
     capacity: "20–28 Penumpang",
     priceUSD: 302,
-    priceIDR: 4900000,
     unit: "per hari (10 jam)",
     image:
       "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1000&q=80",
@@ -305,7 +296,6 @@ export const services: Service[] = [
     duration: "10 Jam / Hari",
     capacity: "30–45 Penumpang",
     priceUSD: 464,
-    priceIDR: 7525000,
     unit: "per hari (10 jam)",
     image:
       "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
@@ -321,6 +311,11 @@ export const services: Service[] = [
     ],
   },
 ];
+
+export const services: Service[] = rawServices.map((item) => ({
+  ...item,
+  priceIDR: catalogIDR(item.priceUSD),
+}));
 
 export function getServiceBySlug(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);

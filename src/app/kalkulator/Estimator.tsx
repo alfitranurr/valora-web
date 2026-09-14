@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Check, Minus, Plus, Calendar, MapPin } from "lucide-react";
+import { Check, Calendar, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/shared/Button";
+import { NumberStepper } from "@/components/shared/NumberStepper";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { services } from "@/data/services";
 import { tourPackages } from "@/data/packages";
@@ -302,112 +303,37 @@ export function Estimator() {
 
             <div className="space-y-5">
               {/* Duration */}
-              <div>
-                <label className="block text-sm font-medium text-charcoal mb-2">
-                  Durasi (hari)
-                </label>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setDuration(Math.max(1, duration - 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                    aria-label="Kurangi durasi"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <input
-                    type="number"
-                    value={duration}
-                    min={1}
-                    max={14}
-                    onChange={(e) =>
-                      setDuration(
-                        Math.max(1, Math.min(14, parseInt(e.target.value) || 1))
-                      )
-                    }
-                    className="w-16 text-center font-medium border border-border-warm rounded-lg py-2 focus:outline-none focus:border-terracotta"
-                  />
-                  <button
-                    onClick={() => setDuration(Math.min(14, duration + 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                    aria-label="Tambah durasi"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
-                  <span className="text-sm text-warm-grey">hari</span>
-                </div>
-              </div>
+              <NumberStepper
+                label="Durasi (hari)"
+                id="estimator-duration"
+                value={duration}
+                min={1}
+                max={14}
+                onChange={setDuration}
+                trailing="hari"
+              />
 
               {/* Quantity */}
-              <div>
-                <label className="block text-sm font-medium text-charcoal mb-2">
-                  Jumlah unit / armada
-                </label>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                    aria-label="Kurangi unit"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <input
-                    type="number"
-                    value={quantity}
-                    min={1}
-                    max={10}
-                    onChange={(e) =>
-                      setQuantity(
-                        Math.max(1, Math.min(10, parseInt(e.target.value) || 1))
-                      )
-                    }
-                    className="w-16 text-center font-medium border border-border-warm rounded-lg py-2 focus:outline-none focus:border-terracotta"
-                  />
-                  <button
-                    onClick={() => setQuantity(Math.min(10, quantity + 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                    aria-label="Tambah unit"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
-                  <span className="text-sm text-warm-grey">unit</span>
-                </div>
-              </div>
+              <NumberStepper
+                label="Jumlah unit / armada"
+                id="estimator-quantity"
+                value={quantity}
+                min={1}
+                max={10}
+                onChange={setQuantity}
+                trailing="unit"
+              />
 
               {/* Pax */}
-              <div>
-                <label className="block text-sm font-medium text-charcoal mb-2">
-                  Jumlah peserta (pax)
-                </label>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setPax(Math.max(1, pax - 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                    aria-label="Kurangi peserta"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <input
-                    type="number"
-                    value={pax}
-                    min={1}
-                    max={50}
-                    onChange={(e) =>
-                      setPax(
-                        Math.max(1, Math.min(50, parseInt(e.target.value) || 1))
-                      )
-                    }
-                    className="w-16 text-center font-medium border border-border-warm rounded-lg py-2 focus:outline-none focus:border-terracotta"
-                  />
-                  <button
-                    onClick={() => setPax(Math.min(50, pax + 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
-                    aria-label="Tambah peserta"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
-                  <span className="text-sm text-warm-grey">orang</span>
-                </div>
-              </div>
+              <NumberStepper
+                label="Jumlah peserta (pax)"
+                id="estimator-pax"
+                value={pax}
+                min={1}
+                max={50}
+                onChange={setPax}
+                trailing="orang"
+              />
 
               {/* Date */}
               <div>

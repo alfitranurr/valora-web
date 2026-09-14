@@ -1,13 +1,13 @@
-import { SectionHeader } from "@/components/shared/SectionHeader";
 import { DestinationCard } from "@/components/cards/DestinationCard";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { PageHeader } from "@/components/shared/PageHeader";
 import {
   getFeaturedDestination,
   getNonFeaturedDestinations,
 } from "@/data/destinations";
 
 export const metadata = {
-  title: "Destinasi Turki — Valora Tour & Travel",
+  title: "Destinasi Turki",
   description:
     "Jelajahi Istanbul, Cappadocia, Bursa, Pamukkale, Konya, Antalya, Trabzon, dan destinasi terbaik Turki lainnya.",
 };
@@ -18,17 +18,11 @@ export default function DestinationsPage() {
 
   return (
     <div className="bg-ivory">
-      <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="Destination"
-              title="Destinasi Wisata di Turki"
-              description="Dari negeri dongeng Cappadocia hingga megahnya Istanbul. Setiap destinasi menawarkan pengalaman yang berbeda."
-            />
-          </RevealOnScroll>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Destination"
+        title="Destinasi Wisata di Turki"
+        description="Dari negeri dongeng Cappadocia hingga megahnya Istanbul. Setiap destinasi menawarkan pengalaman yang berbeda."
+      />
 
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components/shared/PageHeader";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
@@ -7,7 +8,7 @@ import { BadgeCheck, Car, Route, Tag, MapPin, Headset } from "lucide-react";
 import { SITE_CONFIG } from "@/data/config";
 
 export const metadata = {
-  title: "About Us — Valora Tour & Travel",
+  title: "About Us",
   description:
     "Kenali Valora Tour & Travel: spesialis private tour Turki untuk wisatawan Indonesia dengan guide berlisensi, armada VIP Mercedes-Benz, dan dukungan 24/7.",
 };
@@ -42,17 +43,11 @@ const values = [
 export default function AboutUsPage() {
   return (
     <div className="bg-ivory">
-      <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="About Us"
-              title="Tentang Valora Tour & Travel"
-              description="Operator private tour Turki yang dibangun untuk wisatawan Indonesia — berpengalaman, berlisensi, dan berfokus pada kenyamanan grup Anda."
-            />
-          </RevealOnScroll>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="About Us"
+        title="Tentang Valora Tour & Travel"
+        description="Operator private tour Turki yang dibangun untuk wisatawan Indonesia — berpengalaman, berlisensi, dan berfokus pada kenyamanan grup Anda."
+      />
 
       {/* Cerita */}
       <section className="py-12 md:py-16">

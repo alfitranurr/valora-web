@@ -1,10 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Search, SlidersHorizontal, X, ChevronDown } from "lucide-react";
+import { useCallback, useMemo, useState } from "react";
 import { ServiceCard } from "@/components/cards/ServiceCard";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { cn } from "@/lib/utils";
+import {
+  useCatalogFilters,
+  type CatalogSorter,
+} from "@/components/shared/catalog/useCatalogFilters";
+import { CatalogSearch } from "@/components/shared/catalog/CatalogSearch";
+import { CatalogSelect } from "@/components/shared/catalog/CatalogSelect";
+import { CatalogTagToggle } from "@/components/shared/catalog/CatalogTagToggle";
+import { CatalogCountBar } from "@/components/shared/catalog/CatalogCountBar";
+import { CatalogEmptyState } from "@/components/shared/catalog/CatalogEmptyState";
 import type { Service, ServiceCategory } from "@/types";
 
 interface ServicesClientProps {
@@ -12,13 +20,30 @@ interface ServicesClientProps {
   allServices: Service[];
 }
 
-type SortOption = "populer" | "harga-asc" | "harga-desc" | "nama-asc";
-
-const sortOptions: { id: SortOption; label: string }[] = [
-  { id: "populer", label: "Paling Populer" },
-  { id: "harga-asc", label: "Harga: Rendah → Tinggi" },
-  { id: "harga-desc", label: "Harga: Tinggi → Rendah" },
-  { id: "nama-asc", label: "Nama: A → Z" },
+const sorters: CatalogSorter<Service>[] = [
+  {
+    id: "populer",
+    label: "Paling Populer",
+    compare: (a, b) => {
+      const rankOf = (s: Service) => (s.featured ? 2 : 0) + (s.bestSeller ? 1 : 0);
+      return rankOf(b) - rankOf(a);
+    },
+  },
+  {
+    id: "harga-asc",
+    label: "Harga: Rendah → Tinggi",
+    compare: (a, b) => a.priceUSD - b.priceUSD,
+  },
+  {
+    id: "harga-desc",
+    label: "Harga: Tinggi → Rendah",
+    compare: (a, b) => b.priceUSD - a.priceUSD,
+  },
+  {
+    id: "nama-asc",
+    label: "Nama: A → Z",
+    compare: (a, b) => a.name.localeCompare(b.name, "id"),
+  },
 ];
 
 export default function ServicesClient({
@@ -26,67 +51,39 @@ export default function ServicesClient({
   allServices,
 }: ServicesClientProps) {
   const [category, setCategory] = useState<"all" | ServiceCategory>("all");
-  const [query, setQuery] = useState("");
-  const [sort, setSort] = useState<SortOption>("populer");
-  const [bestSellerOnly, setBestSellerOnly] = useState(false);
 
-  const result = useMemo(() => {
-    let list = [...allServices];
+  const categoryFiltered = useMemo(
+    () =>
+      category === "all"
+        ? allServices
+        : allServices.filter((s) => s.category === category),
+    [allServices, category]
+  );
 
-    if (category !== "all") {
-      list = list.filter((s) => s.category === category);
-    }
-    if (bestSellerOnly) {
-      list = list.filter((s) => s.bestSeller);
-    }
-    const q = query.trim().toLowerCase();
-    if (q) {
-      list = list.filter(
-        (s) =>
-          s.name.toLowerCase().includes(q) ||
-          s.shortDesc.toLowerCase().includes(q) ||
-          s.description.toLowerCase().includes(q)
-      );
-    }
+  const searchFn = useCallback(
+    (s: Service, q: string) =>
+      s.name.toLowerCase().includes(q) ||
+      s.shortDesc.toLowerCase().includes(q) ||
+      s.description.toLowerCase().includes(q),
+    []
+  );
 
-    switch (sort) {
-      case "harga-asc":
-        list.sort((a, b) => a.priceUSD - b.priceUSD);
-        break;
-      case "harga-desc":
-        list.sort((a, b) => b.priceUSD - a.priceUSD);
-        break;
-      case "nama-asc":
-        list.sort((a, b) => a.name.localeCompare(b.name, "id"));
-        break;
-      case "populer":
-      default:
-        list.sort((a, b) => {
-          const rankOf = (s: Service) =>
-            (s.featured ? 2 : 0) + (s.bestSeller ? 1 : 0);
-          return rankOf(b) - rankOf(a);
-        });
-        break;
-    }
+  const filters = useCatalogFilters(categoryFiltered, {
+    searchFn,
+    sorters,
+  });
 
-    return list;
-  }, [allServices, category, query, sort, bestSellerOnly]);
-
-  const hasActiveFilters =
-    category !== "all" || query.trim() !== "" || bestSellerOnly;
+  const hasActiveFilters = category !== "all" || filters.hasLocalFilters;
 
   const resetFilters = () => {
     setCategory("all");
-    setQuery("");
-    setBestSellerOnly(false);
-    setSort("populer");
+    filters.resetLocalFilters();
   };
 
   return (
     <>
-      {/* Baris filter: kategori + pencarian + sort */}
       <RevealOnScroll y={16}>
-        <div className="flex flex-wrap items-center gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-4">
           {categories.map((cat) => (
             <button
               key={cat.id}
@@ -104,103 +101,43 @@ export default function ServicesClient({
         </div>
 
         <div className="flex flex-col sm:flex-row gap-2 mb-3">
-          {/* Pencarian */}
-          <div className="relative flex-1 min-w-0">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-warm-grey pointer-events-none" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Cari layanan… (mis. guide, airport, Vito)"
-              className="w-full pl-10 pr-9 py-2.5 border border-border-warm rounded-lg text-sm bg-surface focus:outline-none focus:border-terracotta"
-              aria-label="Cari layanan"
-            />
-            {query && (
-              <button
-                type="button"
-                onClick={() => setQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 text-warm-grey hover:text-charcoal"
-                aria-label="Hapus pencarian"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </div>
-
-          {/* Urutkan */}
-          <div className="relative sm:w-56 flex-shrink-0">
-            <SlidersHorizontal className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-terracotta pointer-events-none" />
-            <select
-              value={sort}
-              onChange={(e) => setSort(e.target.value as SortOption)}
-              className="w-full pl-10 pr-8 py-2.5 border border-border-warm rounded-lg text-sm bg-surface appearance-none focus:outline-none focus:border-terracotta cursor-pointer"
-              aria-label="Urutkan layanan"
-            >
-              {sortOptions.map((opt) => (
-                <option key={opt.id} value={opt.id}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-warm-grey pointer-events-none" />
-          </div>
-
-          {/* Toggle best seller */}
-          <button
-            type="button"
-            onClick={() => setBestSellerOnly((v) => !v)}
-            className={cn(
-              "px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 active:scale-[0.97] flex items-center justify-center gap-1.5 flex-shrink-0",
-              bestSellerOnly
-                ? "bg-gold/15 text-gold border-gold/30"
-                : "bg-surface text-charcoal border-border-warm hover:border-charcoal/30"
-            )}
-            aria-pressed={bestSellerOnly}
-          >
-            ★ Best Seller
-          </button>
+          <CatalogSearch
+            value={filters.query}
+            onChange={filters.setQuery}
+            placeholder="Cari layanan… (mis. guide, airport, Vito)"
+            ariaLabel="Cari layanan"
+          />
+          <CatalogSelect
+            value={filters.sort}
+            onChange={filters.setSort}
+            options={filters.sorters.map((s) => ({ value: s.id, label: s.label }))}
+            ariaLabel="Urutkan layanan"
+          />
+          <CatalogTagToggle
+            active={filters.bestSellerOnly}
+            onClick={filters.toggleBestSeller}
+          />
         </div>
 
-        {/* Info jumlah + reset */}
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-8">
-          <p className="text-xs text-warm-grey" role="status">
-            Menampilkan <span className="font-semibold text-charcoal">{result.length}</span>{" "}
-            dari {allServices.length} layanan
-          </p>
-          {hasActiveFilters && (
-            <button
-              type="button"
-              onClick={resetFilters}
-              className="inline-flex items-center gap-1 text-xs font-medium text-terracotta hover:underline"
-            >
-              <X className="w-3.5 h-3.5" />
-              Reset filter
-            </button>
-          )}
-        </div>
+        <CatalogCountBar
+          shown={filters.result.length}
+          total={allServices.length}
+          noun="layanan"
+          showReset={hasActiveFilters}
+          onReset={resetFilters}
+        />
       </RevealOnScroll>
 
-      {/* Grid hasil */}
-      {result.length === 0 ? (
-        <div className="py-16 text-center bg-ivory-dark border border-border-warm rounded-lg">
-          <Search className="w-8 h-8 text-warm-grey mx-auto mb-3" />
-          <p className="text-sm font-medium text-charcoal mb-1">
-            Tidak ada layanan yang cocok
-          </p>
-          <p className="text-sm text-warm-grey mb-4">
-            Coba ubah kata kunci atau reset filter.
-          </p>
-          <button
-            type="button"
-            onClick={resetFilters}
-            className="text-sm font-medium text-terracotta hover:underline"
-          >
-            Reset semua filter
-          </button>
-        </div>
+      {filters.result.length === 0 ? (
+        <CatalogEmptyState
+          title="Tidak ada layanan yang cocok"
+          description="Coba ubah kata kunci atau terapkan ulang filter."
+          resetLabel="Reset semua filter"
+          onReset={resetFilters}
+        />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {result.map((service, idx) => (
+          {filters.result.map((service, idx) => (
             <RevealOnScroll key={service.id} delay={Math.min(80 + idx * 60, 440)}>
               <ServiceCard service={service} />
             </RevealOnScroll>
