@@ -43,7 +43,7 @@ export default function ServicesClient({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((service, idx) => (
-          <RevealOnScroll key={service.id} delay={idx * 80}>
+          <RevealOnScroll key={service.id} delay={Math.min(idx * 60, 360)}>
             <ServiceCard service={service} />
           </RevealOnScroll>
         ))}
