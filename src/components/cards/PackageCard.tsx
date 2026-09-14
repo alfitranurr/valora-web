@@ -12,7 +12,7 @@ interface PackageCardProps {
 export function PackageCard({ pkg }: PackageCardProps) {
   return (
     <article className="group flex flex-col bg-surface rounded-xl border border-border-warm overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-terracotta/30 hover:-translate-y-1">
-      {/* Image with destination overlay */}
+      {/* Image */}
       <div className="card-img-wrap relative aspect-[5/3] w-full">
         <ImageWithFallback
           src={pkg.image}
@@ -35,40 +35,40 @@ export function PackageCard({ pkg }: PackageCardProps) {
         </div>
       </div>
 
-      {/* Content */}
+      {/* Content — fixed structure for consistent height */}
       <div className="flex flex-col flex-1 p-6">
-        <h3 className="font-serif text-lg font-semibold text-charcoal leading-snug mb-3">
+        {/* Title — fixed height */}
+        <h3 className="font-serif text-lg font-semibold text-charcoal leading-snug mb-3 min-h-[3.5rem] line-clamp-2">
           {pkg.name}
         </h3>
 
-        <p className="text-sm text-warm-grey leading-relaxed line-clamp-2 mb-4">
+        {/* Description — fixed height */}
+        <p className="text-sm text-warm-grey leading-relaxed line-clamp-2 mb-4 min-h-[2.5rem]">
           {pkg.description}
         </p>
 
-        {/* Meta info with icons */}
-        <div className="flex items-center gap-4 mb-5 pb-5 border-b border-border-warm">
+        {/* Meta — fixed height */}
+        <div className="flex items-center gap-4 mb-5 pb-5 border-b border-border-warm min-h-[1.5rem]">
           <div className="flex items-center gap-1.5 text-xs text-warm-grey">
-            <Clock className="w-3.5 h-3.5 text-terracotta" />
-            {pkg.duration}
+            <Clock className="w-3.5 h-3.5 text-terracotta flex-shrink-0" />
+            <span className="truncate">{pkg.duration}</span>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-warm-grey">
-            <Users className="w-3.5 h-3.5 text-terracotta" />
-            {pkg.capacity}
+            <Users className="w-3.5 h-3.5 text-terracotta flex-shrink-0" />
+            <span className="truncate">{pkg.capacity}</span>
           </div>
         </div>
 
-        {/* Price + CTA */}
+        {/* Price + CTA — pinned to bottom */}
         <div className="mt-auto">
-          <div className="flex items-end justify-between mb-4">
-            <div>
-              <p className="text-xs text-warm-grey mb-0.5">Mulai dari</p>
-              <p className="text-xl font-bold text-charcoal">
-                {formatPriceIDR(pkg.priceIDR)}
-              </p>
-              <p className="text-xs font-medium text-gold">
-                {formatPriceUSD(pkg.priceUSD)} · {pkg.unit}
-              </p>
-            </div>
+          <div className="mb-4">
+            <p className="text-xs text-warm-grey mb-0.5">Mulai dari</p>
+            <p className="text-xl font-bold text-charcoal">
+              {formatPriceIDR(pkg.priceIDR)}
+            </p>
+            <p className="text-xs font-medium text-gold min-h-[1.25rem]">
+              {formatPriceUSD(pkg.priceUSD)} · {pkg.unit}
+            </p>
           </div>
 
           <Link
