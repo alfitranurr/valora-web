@@ -12,7 +12,8 @@ const navLinks = [
   { href: "/tour-packages", label: "Tour Packages" },
   { href: "/services", label: "Services" },
   { href: "/custom-trip", label: "Custom Trip" },
-  { href: "/kalkulator", label: "Book" },
+  { href: "/kalkulator", label: "Booking" },
+  { href: "/about-us", label: "About Us" },
 ];
 
 export function Navbar() {
@@ -51,7 +52,7 @@ export function Navbar() {
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

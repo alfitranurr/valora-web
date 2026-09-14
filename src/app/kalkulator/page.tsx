@@ -16,7 +16,7 @@ export default function KalkulatorPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealOnScroll y={16}>
             <SectionHeader
-              eyebrow="Book"
+              eyebrow="Booking"
               title="Pilih Layanan, Lihat Estimasi, Kirim Request"
               description="Pilih layanan, sesuaikan detail, dan lihat estimasi instan dalam USD, EUR, dan IDR. Lalu kirim request ke Admin Valora untuk konfirmasi."
             />
