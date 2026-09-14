@@ -36,7 +36,7 @@ export function HowItWorks() {
         <RevealOnScroll>
           <SectionHeader
             eyebrow="Cara Kerja"
-            title="Empat langkah menuju Turki"
+            title="Empat Langkah Menuju Turki"
             description="Proses yang sederhana dan transparan — dari eksplorasi hingga konfirmasi."
             className="mb-12"
           />

@@ -19,7 +19,7 @@ export default function TourPackagesPage() {
           <RevealOnScroll y={16}>
             <SectionHeader
               eyebrow="Tour Packages"
-              title="Paket tur pilihan ke destinasi terbaik Turki"
+              title="Paket Tur Pilihan ke Destinasi Terbaik Turki"
               description="Tur all-inclusive dengan armada private Mercedes-Benz Vito. Guide berlisensi, itinerary terstruktur, dan harga transparan."
             />
           </RevealOnScroll>
@@ -43,7 +43,7 @@ export default function TourPackagesPage() {
           <RevealOnScroll y={16}>
             <SectionHeader
               eyebrow="Bundles"
-              title="Hemat lebih banyak dengan bundle"
+              title="Hemat Lebih Banyak dengan Bundle"
               description="Kombinasi layanan dengan harga lebih terjangkau dibanding pesan satuan."
               className="mb-10"
             />

@@ -18,7 +18,7 @@ export default function BundlesPage() {
           <RevealOnScroll y={16}>
             <SectionHeader
               eyebrow="Bundles"
-              title="Paket kombinasi layanan"
+              title="Paket Kombinasi Layanan"
               description="Solusi paling praktis dan mewah. Dapatkan guide, armada VIP, dan fotografer dalam satu paket — lebih hemat dibanding pesan satuan."
             />
           </RevealOnScroll>

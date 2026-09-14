@@ -19,7 +19,7 @@ export function Destinations() {
           <div className="flex items-end justify-between mb-10">
             <SectionHeader
               eyebrow="Destination"
-              title="Jelajahi keajaiban Turki"
+              title="Jelajahi Keajaiban Turki"
               description="Dari balon udara Cappadocia hingga megahnya Hagia Sophia di Istanbul."
             />
             <Link

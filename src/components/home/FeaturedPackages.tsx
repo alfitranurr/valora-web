@@ -15,7 +15,7 @@ export function FeaturedPackages() {
           <div className="flex items-end justify-between mb-10">
             <SectionHeader
               eyebrow="Tour Packages"
-              title="Paket tur pilihan populer"
+              title="Paket Tur Pilihan Populer"
               description="Tur all-inclusive ke destinasi terbaik Turki dengan armada private Mercedes-Benz."
             />
             <Link

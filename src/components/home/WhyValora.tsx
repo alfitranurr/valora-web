@@ -55,7 +55,7 @@ export function WhyValora() {
         <RevealOnScroll>
           <SectionHeader
             eyebrow="Mengapa Valora"
-            title="Mengapa wisatawan memilih Valora Tour?"
+            title="Mengapa Wisatawan Memilih Valora Tour?"
             description="Komitmen kami menghadirkan pengalaman liburan di Turki yang aman, nyaman, berkelas, dan bebas rasa khawatir."
             dark
             className="mb-12"
