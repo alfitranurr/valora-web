@@ -104,3 +104,54 @@ export function customTripWhatsAppUrl(data: CustomTripData): string {
 
   return buildWhatsAppUrl(lines.join("\n"));
 }
+
+// ============================================================
+// Template Booking & Pembayaran
+// ============================================================
+
+/** Admin → customer: link halaman booking + instruksi DP (di-copy manual ke chat). */
+export function bookingHandoverMessage(booking: {
+  id: string;
+  serviceName: string;
+  totalIDR: number;
+  depositIDR: number;
+  bookingUrl: string;
+}): string {
+  return [
+    "Halo, berikut detail booking Anda:",
+    `Nomor Booking: ${booking.id}`,
+    `Layanan: ${booking.serviceName}`,
+    `Total: ${formatIDR(booking.totalIDR)}`,
+    `DP (deposit): ${formatIDR(booking.depositIDR)}`,
+    "",
+    `Silakan lakukan pembayaran DP melalui halaman berikut:`,
+    booking.bookingUrl,
+    "",
+    "Pada halaman tersebut tersedia data rekening bank, QRIS, dan form upload bukti pembayaran. Kami konfirmasi setiap bukti pembayaran maksimal 1×24 jam.",
+    "",
+    "Valora Tour & Travel",
+  ].join("\n");
+}
+
+/** Customer → admin: lapor sudah transfer setelah upload bukti. */
+export function paymentSubmittedUrl(bookingId: string): string {
+  const message = [
+    "Halo Admin Valora Tour,",
+    "",
+    `Saya sudah melakukan pembayaran untuk booking ${bookingId}.`,
+    "Bukti transfer telah saya unggah di halaman booking.",
+    "Mohon verifikasinya. Terima kasih.",
+  ].join("\n");
+  return buildWhatsAppUrl(message);
+}
+
+/** Customer → admin: tanyakan status booking. */
+export function bookingStatusUrl(bookingId: string): string {
+  const message = [
+    "Halo Admin Valora Tour,",
+    "",
+    `Saya ingin menanyakan status booking ${bookingId}.`,
+    "Terima kasih.",
+  ].join("\n");
+  return buildWhatsAppUrl(message);
+}

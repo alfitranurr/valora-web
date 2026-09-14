@@ -10,6 +10,7 @@ const footerLinks = [
   { href: "/services", label: "Services" },
   { href: "/custom-trip", label: "Custom Trip" },
   { href: "/kalkulator", label: "Book" },
+  { href: "/pembayaran", label: "Kebijakan Pembayaran" },
 ];
 
 export function Footer() {

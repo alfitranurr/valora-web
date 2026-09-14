@@ -98,3 +98,53 @@ export interface PriceCalculation {
   totalEUR: number;
   totalIDR: number;
 }
+
+// ============================================================
+// Booking & Pembayaran (manual verification, QRIS/Bank)
+// ============================================================
+
+export type BookingStatus =
+  | "menunggu_pembayaran"
+  | "menunggu_verifikasi"
+  | "dp_terverifikasi"
+  | "lunas"
+  | "dikonfirmasi"
+  | "dibatalkan";
+
+export type PaymentType = "deposit" | "final";
+
+export type PaymentMethod = "transfer" | "qris";
+
+export interface BookingCustomer {
+  name: string;
+  wa: string;
+  email?: string;
+}
+
+export interface Booking {
+  id: string; // format VLR-YYMM-####
+  createdAt: string;
+  serviceName: string;
+  serviceRef?: string; // mis. "tour-packages/istanbul-classical"
+  travelDate: string; // ISO tanggal (YYYY-MM-DD)
+  adults: number;
+  children: number;
+  totalIDR: number;
+  depositIDR: number;
+  customer: BookingCustomer;
+  notes?: string;
+  status: BookingStatus;
+}
+
+export interface BookingPayment {
+  id: string;
+  bookingId: string;
+  type: PaymentType;
+  method?: PaymentMethod;
+  amountIDR: number;
+  proofPath?: string;
+  submittedAt?: string;
+  verifiedAt?: string;
+  adminNote?: string;
+  createdAt: string;
+}
