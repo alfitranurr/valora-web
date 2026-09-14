@@ -22,7 +22,7 @@ export default function DestinationsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealOnScroll y={16}>
             <SectionHeader
-              eyebrow="Destinasi"
+              eyebrow="Destination"
               title="Destinasi wisata di Turki"
               description="Dari negeri dongeng Cappadocia hingga megahnya Istanbul. Setiap destinasi menawarkan pengalaman yang berbeda."
             />

@@ -17,7 +17,7 @@ export default function BundlesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealOnScroll y={16}>
             <SectionHeader
-              eyebrow="Bundle Hemat"
+              eyebrow="Bundles"
               title="Paket kombinasi layanan"
               description="Solusi paling praktis dan mewah. Dapatkan guide, armada VIP, dan fotografer dalam satu paket — lebih hemat dibanding pesan satuan."
             />

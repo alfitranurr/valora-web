@@ -14,7 +14,7 @@ export function FeaturedServices() {
         <RevealOnScroll>
           <div className="flex items-end justify-between mb-10">
             <SectionHeader
-              eyebrow="Layanan Unggulan"
+              eyebrow="Services"
               title="Semua yang Anda butuhkan untuk Turki"
               description="Dari tour guide berlisensi hingga armada VIP dan fotografer profesional — semuanya private untuk grup Anda."
             />

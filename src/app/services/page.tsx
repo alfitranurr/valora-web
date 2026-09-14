@@ -25,7 +25,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealOnScroll y={16}>
             <SectionHeader
-              eyebrow="Layanan"
+              eyebrow="Services"
               title="Katalog Layanan Valora"
               description="Setiap layanan bersifat private — hanya untuk Anda dan grup Anda. Pilih kategori untuk menelusuri."
             />

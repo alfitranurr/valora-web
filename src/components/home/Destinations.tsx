@@ -18,7 +18,7 @@ export function Destinations() {
         <RevealOnScroll>
           <div className="flex items-end justify-between mb-10">
             <SectionHeader
-              eyebrow="Destinasi"
+              eyebrow="Destination"
               title="Jelajahi keajaiban Turki"
               description="Dari balon udara Cappadocia hingga megahnya Hagia Sophia di Istanbul."
             />
