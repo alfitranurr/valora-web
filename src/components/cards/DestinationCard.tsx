@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
 import type { Destination } from "@/types";
@@ -8,9 +9,15 @@ interface DestinationCardProps {
 }
 
 export function DestinationCard({ destination, variant = "default" }: DestinationCardProps) {
+  const href = `/destinasi/${destination.id}`;
+
   if (variant === "featured") {
     return (
-      <article className="group relative rounded-xl overflow-hidden cursor-pointer border border-border-warm transition-all duration-300 hover:shadow-xl hover:border-terracotta/30">
+      <Link
+        href={href}
+        className="group block relative rounded-xl overflow-hidden cursor-pointer border border-border-warm transition-all duration-300 hover:shadow-xl hover:border-terracotta/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+        aria-label={`Lihat detail destinasi ${destination.name}`}
+      >
         <div className="card-img-wrap aspect-[16/10] md:aspect-[2/1] w-full">
           <ImageWithFallback
             src={destination.image}
@@ -32,7 +39,7 @@ export function DestinationCard({ destination, variant = "default" }: Destinatio
           <p className="text-ivory/80 text-sm md:text-base leading-relaxed max-w-lg">
             {destination.description}
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-5 flex flex-wrap items-center gap-2">
             {destination.highlights.slice(0, 3).map((h) => (
               <span
                 key={h}
@@ -41,14 +48,21 @@ export function DestinationCard({ destination, variant = "default" }: Destinatio
                 {h}
               </span>
             ))}
+            <span className="text-xs font-semibold text-gold inline-flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
+              Lihat Detail →
+            </span>
           </div>
         </div>
-      </article>
+      </Link>
     );
   }
 
   return (
-    <article className="group relative rounded-xl overflow-hidden cursor-pointer border border-border-warm transition-all duration-300 hover:shadow-lg hover:border-terracotta/30 hover:-translate-y-1">
+    <Link
+      href={href}
+      className="group block relative rounded-xl overflow-hidden cursor-pointer border border-border-warm transition-all duration-300 hover:shadow-lg hover:border-terracotta/30 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+      aria-label={`Lihat detail destinasi ${destination.name}`}
+    >
       <div className="card-img-wrap aspect-[5/3] w-full">
         <ImageWithFallback
           src={destination.image}
@@ -71,6 +85,6 @@ export function DestinationCard({ destination, variant = "default" }: Destinatio
           {destination.description}
         </p>
       </div>
-    </article>
+    </Link>
   );
 }

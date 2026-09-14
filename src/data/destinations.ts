@@ -161,3 +161,12 @@ export function getFeaturedDestination(): Destination | undefined {
 export function getNonFeaturedDestinations(): Destination[] {
   return destinations.filter((d) => !d.featured);
 }
+
+export function getDestinationById(id: string): Destination | undefined {
+  return destinations.find((d) => d.id === id);
+}
+
+/** Token utama destinasi untuk pemetaan ke paket ("Bursa & Uludag" → "bursa"). */
+export function destinationToken(name: string): string {
+  return name.toLowerCase().split(/\s*(?:&|\/)\s*/)[0].trim();
+}

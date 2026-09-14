@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
   name: "Valora Tour and Travel",
   tagline: "Spesialis Wisata Turki untuk Wisatawan Indonesia",
-  whatsappNumber: "905528881234",
-  whatsappDisplay: "+90 552 888 1234",
+  whatsappNumber: "6285158779239",
+  whatsappDisplay: "085158779239",
   exchangeRate: {
     USD_IDR: 17630,
     USD_EUR: 0.92,

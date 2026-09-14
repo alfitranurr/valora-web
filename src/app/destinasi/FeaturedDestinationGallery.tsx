@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
 import { cn } from "@/lib/utils";
@@ -136,7 +137,7 @@ export function FeaturedDestinationGallery({
           <p className="text-ivory/80 text-sm md:text-base leading-relaxed max-w-lg">
             {destination.description}
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-5 flex flex-wrap items-center gap-2">
             {destination.highlights.slice(0, 3).map((h) => (
               <span
                 key={h}
@@ -145,6 +146,12 @@ export function FeaturedDestinationGallery({
                 {h}
               </span>
             ))}
+            <Link
+              href={`/destinasi/${destination.id}`}
+              className="pointer-events-auto text-xs font-semibold text-gold hover:text-gold-light transition-colors inline-flex items-center gap-1"
+            >
+              Lihat Detail →
+            </Link>
           </div>
         </div>
       </div>
