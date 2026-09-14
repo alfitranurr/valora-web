@@ -53,8 +53,8 @@ export function FinalCTA() {
                   Konsultasi WhatsApp
                 </a>
               </div>
-              <p className="mt-6 text-xs text-ivory/50">
-                <KursDisplay /> · Tanpa komitmen pembayaran awal
+              <p className="mt-6 text-xs text-ivory/70">
+                <KursDisplay dark /> · Tanpa komitmen pembayaran awal
               </p>
             </div>
           </div>
