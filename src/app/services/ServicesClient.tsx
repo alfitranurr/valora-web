@@ -24,26 +24,28 @@ export default function ServicesClient({
 
   return (
     <>
-      <div className="flex flex-wrap gap-2 mb-8">
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => setActive(cat.id)}
-            className={cn(
-              "px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 active:scale-[0.97]",
-              active === cat.id
-                ? "bg-charcoal text-ivory border-charcoal shadow-sm"
-                : "bg-surface text-charcoal border-border-warm hover:border-charcoal/30 hover:shadow-sm"
-            )}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
+      <RevealOnScroll y={16}>
+        <div className="flex flex-wrap gap-2 mb-8">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActive(cat.id)}
+              className={cn(
+                "px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 active:scale-[0.97]",
+                active === cat.id
+                  ? "bg-charcoal text-ivory border-charcoal shadow-sm"
+                  : "bg-surface text-charcoal border-border-warm hover:border-charcoal/30 hover:shadow-sm"
+              )}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+      </RevealOnScroll>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((service, idx) => (
-          <RevealOnScroll key={service.id} delay={Math.min(idx * 60, 360)}>
+          <RevealOnScroll key={service.id} delay={Math.min(80 + idx * 60, 440)}>
             <ServiceCard service={service} />
           </RevealOnScroll>
         ))}
