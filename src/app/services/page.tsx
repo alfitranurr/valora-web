@@ -1,4 +1,5 @@
 import { SectionHeader } from "@/components/shared/SectionHeader";
+import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { services } from "@/data/services";
 import type { ServiceCategory } from "@/types";
 import ServicesClient from "./ServicesClient";
@@ -22,11 +23,13 @@ export default function ServicesPage() {
     <div className="bg-ivory">
       <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Layanan"
-            title="Katalog Layanan Valora"
-            description="Setiap layanan bersifat private — hanya untuk Anda dan grup Anda. Pilih kategori untuk menelusuri."
-          />
+          <RevealOnScroll>
+            <SectionHeader
+              eyebrow="Layanan"
+              title="Katalog Layanan Valora"
+              description="Setiap layanan bersifat private — hanya untuk Anda dan grup Anda. Pilih kategori untuk menelusuri."
+            />
+          </RevealOnScroll>
         </div>
       </section>
 

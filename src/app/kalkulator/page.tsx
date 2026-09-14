@@ -1,4 +1,5 @@
 import { SectionHeader } from "@/components/shared/SectionHeader";
+import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { Estimator } from "@/components/estimator/Estimator";
 import { KursDisplay } from "@/components/shared/KursDisplay";
 
@@ -13,14 +14,18 @@ export default function KalkulatorPage() {
     <div className="bg-ivory">
       <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Pesan Trip"
-            title="Pilih layanan, lihat estimasi, kirim request"
-            description="Pilih layanan, sesuaikan detail, dan lihat estimasi instan dalam USD, EUR, dan IDR. Lalu kirim request ke Admin Valora untuk konfirmasi."
-          />
-          <p className="mt-4 text-sm text-warm-grey">
-            <KursDisplay /> · Estimasi awal — harga final dikonfirmasi oleh Admin Valora.
-          </p>
+          <RevealOnScroll>
+            <SectionHeader
+              eyebrow="Pesan Trip"
+              title="Pilih layanan, lihat estimasi, kirim request"
+              description="Pilih layanan, sesuaikan detail, dan lihat estimasi instan dalam USD, EUR, dan IDR. Lalu kirim request ke Admin Valora untuk konfirmasi."
+            />
+            <RevealOnScroll delay={100} y={12}>
+              <p className="mt-4 text-sm text-warm-grey">
+                <KursDisplay /> · Estimasi awal — harga final dikonfirmasi oleh Admin Valora.
+              </p>
+            </RevealOnScroll>
+          </RevealOnScroll>
         </div>
       </section>
 
