@@ -18,11 +18,12 @@ interface Options<T> {
 }
 
 /**
- * State filter katalog yang dipakai bersama di halaman Services & Tour Packages:
- * pencarian teks, toggle best-seller, dan sorting.
- * Filter khusus (kategori/destinasi/durasi) tetap di halaman masing-masing.
+ * State filter katalog yang dipakai bersama di halaman Services, Tour Packages,
+ * dan Destinasi: pencarian teks, toggle best-seller (bila item punya flag),
+ * dan sorting. Filter khusus (kategori/destinasi/durasi/region) tetap di
+ * halaman masing-masing.
  */
-export function useCatalogFilters<T extends { bestSeller?: boolean }>(
+export function useCatalogFilters<T extends object>(
   items: T[],
   { searchFn, sorters, initialSort }: Options<T>
 ) {
@@ -35,7 +36,7 @@ export function useCatalogFilters<T extends { bestSeller?: boolean }>(
     let list = [...items];
 
     if (bestSellerOnly) {
-      list = list.filter((item) => item.bestSeller);
+      list = list.filter((item) => (item as { bestSeller?: boolean }).bestSeller);
     }
 
     const q = query.trim().toLowerCase();
