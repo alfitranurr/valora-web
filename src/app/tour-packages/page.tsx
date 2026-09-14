@@ -1,6 +1,6 @@
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import { PackageCard } from "@/components/cards/PackageCard";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { TourPackagesClient } from "./TourPackagesClient";
 import { tourPackages } from "@/data/packages";
 import { BundleCard } from "@/components/cards/BundleCard";
 import { bundles } from "@/data/bundles";
@@ -20,7 +20,7 @@ export default function TourPackagesPage() {
             <SectionHeader
               eyebrow="Tour Packages"
               title="Paket Tur Pilihan ke Destinasi Terbaik Turki"
-              description="Tur all-inclusive dengan armada private Mercedes-Benz Vito. Guide berlisensi, itinerary terstruktur, dan harga transparan."
+              description="Tur all-inclusive dengan armada private Mercedes-Benz Vito. Filter per destinasi, pencarian, sorting harga dan durasi dalam sekali klik."
             />
           </RevealOnScroll>
         </div>
@@ -28,13 +28,7 @@ export default function TourPackagesPage() {
 
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tourPackages.map((pkg, idx) => (
-              <RevealOnScroll key={pkg.id} delay={idx * 100} y={20}>
-                <PackageCard pkg={pkg} />
-              </RevealOnScroll>
-            ))}
-          </div>
+          <TourPackagesClient packages={tourPackages} />
         </div>
       </section>
 

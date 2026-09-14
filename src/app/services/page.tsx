@@ -27,7 +27,7 @@ export default function ServicesPage() {
             <SectionHeader
               eyebrow="Services"
               title="Katalog Layanan Valora"
-              description="Setiap layanan bersifat private — hanya untuk Anda dan grup Anda. Pilih kategori untuk menelusuri."
+              description="Setiap layanan bersifat private — hanya untuk Anda dan grup Anda. Gunakan kategori, pencarian, dan sorting untuk menemukan yang cocok."
             />
           </RevealOnScroll>
         </div>

@@ -1,51 +1,65 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search, SlidersHorizontal, X, ChevronDown } from "lucide-react";
-import { ServiceCard } from "@/components/cards/ServiceCard";
+import { Search, SlidersHorizontal, X, ChevronDown, Clock } from "lucide-react";
+import { PackageCard } from "@/components/cards/PackageCard";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { cn } from "@/lib/utils";
-import type { Service, ServiceCategory } from "@/types";
+import type { TourPackage } from "@/types";
 
-interface ServicesClientProps {
-  categories: { id: "all" | ServiceCategory; label: string }[];
-  allServices: Service[];
+interface TourPackagesClientProps {
+  packages: TourPackage[];
 }
 
-type SortOption = "populer" | "harga-asc" | "harga-desc" | "nama-asc";
+type SortOption = "populer" | "harga-asc" | "harga-desc" | "durasi-asc" | "durasi-desc" | "nama-asc";
 
 const sortOptions: { id: SortOption; label: string }[] = [
   { id: "populer", label: "Paling Populer" },
   { id: "harga-asc", label: "Harga: Rendah → Tinggi" },
   { id: "harga-desc", label: "Harga: Tinggi → Rendah" },
+  { id: "durasi-asc", label: "Durasi: Singkat → Lama" },
+  { id: "durasi-desc", label: "Durasi: Lama → Singkat" },
   { id: "nama-asc", label: "Nama: A → Z" },
 ];
 
-export default function ServicesClient({
-  categories,
-  allServices,
-}: ServicesClientProps) {
-  const [category, setCategory] = useState<"all" | ServiceCategory>("all");
+export function TourPackagesClient({
+  packages,
+}: TourPackagesClientProps) {
+  const [destination, setDestination] = useState<string>("all");
+  const [duration, setDuration] = useState<number | "all">("all");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SortOption>("populer");
   const [bestSellerOnly, setBestSellerOnly] = useState(false);
 
-  const result = useMemo(() => {
-    let list = [...allServices];
+  const destinations = useMemo(() => {
+    const set = new Set(packages.map((p) => p.destination));
+    return ["all", ...Array.from(set)];
+  }, [packages]);
 
-    if (category !== "all") {
-      list = list.filter((s) => s.category === category);
+  const durationOptions = useMemo(() => {
+    const set = new Set(packages.map((p) => p.durationDays));
+    return ["all", ...Array.from(set)].sort();
+  }, [packages]);
+
+  const result = useMemo(() => {
+    let list = [...packages];
+
+    if (destination !== "all") {
+      list = list.filter((p) => p.destination === destination);
+    }
+    if (duration !== "all") {
+      list = list.filter((p) => p.durationDays === duration);
     }
     if (bestSellerOnly) {
-      list = list.filter((s) => s.bestSeller);
+      list = list.filter((p) => p.bestSeller);
     }
     const q = query.trim().toLowerCase();
     if (q) {
       list = list.filter(
-        (s) =>
-          s.name.toLowerCase().includes(q) ||
-          s.shortDesc.toLowerCase().includes(q) ||
-          s.description.toLowerCase().includes(q)
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.destination.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q)
       );
     }
 
@@ -56,49 +70,58 @@ export default function ServicesClient({
       case "harga-desc":
         list.sort((a, b) => b.priceUSD - a.priceUSD);
         break;
+      case "durasi-asc":
+        list.sort((a, b) => a.durationDays - b.durationDays);
+        break;
+      case "durasi-desc":
+        list.sort((a, b) => b.durationDays - a.durationDays);
+        break;
       case "nama-asc":
         list.sort((a, b) => a.name.localeCompare(b.name, "id"));
         break;
       case "populer":
       default:
         list.sort((a, b) => {
-          const rankOf = (s: Service) =>
-            (s.featured ? 2 : 0) + (s.bestSeller ? 1 : 0);
+          const rankOf = (s: TourPackage) => (s.bestSeller ? 1 : 0);
           return rankOf(b) - rankOf(a);
         });
         break;
     }
 
     return list;
-  }, [allServices, category, query, sort, bestSellerOnly]);
+  }, [packages, destination, duration, query, sort, bestSellerOnly]);
 
   const hasActiveFilters =
-    category !== "all" || query.trim() !== "" || bestSellerOnly;
+    destination !== "all" || duration !== "all" || query.trim() !== "" || bestSellerOnly;
 
   const resetFilters = () => {
-    setCategory("all");
+    setDestination("all");
+    setDuration("all");
     setQuery("");
     setBestSellerOnly(false);
     setSort("populer");
   };
 
+  const destinationLabel = (d: string) =>
+    d === "all" ? "Semua Destinasi" : d;
+
   return (
     <>
-      {/* Baris filter: kategori + pencarian + sort */}
+      {/* Filter kategori destinasi */}
       <RevealOnScroll y={16}>
         <div className="flex flex-wrap items-center gap-2 mb-4">
-          {categories.map((cat) => (
+          {destinations.map((d) => (
             <button
-              key={cat.id}
-              onClick={() => setCategory(cat.id)}
+              key={d}
+              onClick={() => setDestination(d)}
               className={cn(
                 "px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 active:scale-[0.97]",
-                category === cat.id
+                destination === d
                   ? "bg-charcoal text-ivory border-charcoal shadow-sm"
                   : "bg-surface text-charcoal border-border-warm hover:border-charcoal/30 hover:shadow-sm"
               )}
             >
-              {cat.label}
+              {destinationLabel(d)}
             </button>
           ))}
         </div>
@@ -111,9 +134,9 @@ export default function ServicesClient({
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Cari layanan… (mis. guide, airport, Vito)"
+              placeholder="Cari paket… (mis. Istanbul, balon, Cappadocia)"
               className="w-full pl-10 pr-9 py-2.5 border border-border-warm rounded-lg text-sm bg-surface focus:outline-none focus:border-terracotta"
-              aria-label="Cari layanan"
+              aria-label="Cari paket tour"
             />
             {query && (
               <button
@@ -127,6 +150,27 @@ export default function ServicesClient({
             )}
           </div>
 
+          {/* Durasi */}
+          <div className="relative sm:w-40 flex-shrink-0">
+            <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-terracotta pointer-events-none" />
+            <select
+              value={String(duration)}
+              onChange={(e) =>
+                setDuration(e.target.value === "all" ? "all" : Number(e.target.value))
+              }
+              className="w-full pl-10 pr-8 py-2.5 border border-border-warm rounded-lg text-sm bg-surface appearance-none focus:outline-none focus:border-terracotta cursor-pointer"
+              aria-label="Filter durasi"
+            >
+              <option value="all">Semua Durasi</option>
+              {durationOptions.map((d) => (
+                <option key={String(d)} value={String(d)}>
+                  {d} Hari
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-warm-grey pointer-events-none" />
+          </div>
+
           {/* Urutkan */}
           <div className="relative sm:w-56 flex-shrink-0">
             <SlidersHorizontal className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-terracotta pointer-events-none" />
@@ -134,7 +178,7 @@ export default function ServicesClient({
               value={sort}
               onChange={(e) => setSort(e.target.value as SortOption)}
               className="w-full pl-10 pr-8 py-2.5 border border-border-warm rounded-lg text-sm bg-surface appearance-none focus:outline-none focus:border-terracotta cursor-pointer"
-              aria-label="Urutkan layanan"
+              aria-label="Urutkan paket"
             >
               {sortOptions.map((opt) => (
                 <option key={opt.id} value={opt.id}>
@@ -165,7 +209,7 @@ export default function ServicesClient({
         <div className="flex flex-wrap items-center justify-between gap-2 mb-8">
           <p className="text-xs text-warm-grey" role="status">
             Menampilkan <span className="font-semibold text-charcoal">{result.length}</span>{" "}
-            dari {allServices.length} layanan
+            dari {packages.length} paket
           </p>
           {hasActiveFilters && (
             <button
@@ -185,10 +229,11 @@ export default function ServicesClient({
         <div className="py-16 text-center bg-ivory-dark border border-border-warm rounded-lg">
           <Search className="w-8 h-8 text-warm-grey mx-auto mb-3" />
           <p className="text-sm font-medium text-charcoal mb-1">
-            Tidak ada layanan yang cocok
+            Tidak ada paket yang cocok
           </p>
           <p className="text-sm text-warm-grey mb-4">
-            Coba ubah kata kunci atau reset filter.
+            Coba ubah kata kunci atau filter, atau konsultasi via WhatsApp untuk
+            custom trip.
           </p>
           <button
             type="button"
@@ -200,9 +245,9 @@ export default function ServicesClient({
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {result.map((service, idx) => (
-            <RevealOnScroll key={service.id} delay={Math.min(80 + idx * 60, 440)}>
-              <ServiceCard service={service} />
+          {result.map((pkg, idx) => (
+            <RevealOnScroll key={pkg.id} delay={Math.min(80 + idx * 60, 440)}>
+              <PackageCard pkg={pkg} />
             </RevealOnScroll>
           ))}
         </div>
