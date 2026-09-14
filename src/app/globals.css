@@ -140,3 +140,13 @@ img {
 .image-reveal {
   animation: image-reveal 0.8s ease-out both;
 }
+
+
+/* Sembunyikan scrollbar untuk galeri scroll horizontal (galeri featured) */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

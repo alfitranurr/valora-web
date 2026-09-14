@@ -82,6 +82,8 @@ export interface Destination {
   description: string;
   highlights: string[];
   image: string;
+  /** Galeri opsional per destinasi — jika diisi, kartu featured dapat galeri carousel scroll. */
+  gallery?: string[];
   featured?: boolean;
 }
 

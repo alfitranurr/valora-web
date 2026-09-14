@@ -16,6 +16,12 @@ export const destinations: Destination[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1774429307435-35651939a7a9?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1774429307435-35651939a7a9?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1567797964760-5366be053e70?ixlib=rb-4.1.0&q=80&fm=jpg&crop=entropy&cs=srgb&w=1200&dl=ilter-cengiz-SxWSZN4a_1c-unsplash.jpg",
+      "https://images.unsplash.com/photo-1647955950700-e74d397d4903?ixlib=rb-4.1.0&q=80&fm=jpg&crop=entropy&cs=srgb&w=1200&dl=luis-barreto-d-ePQtQb5_CPM-unsplash.jpg",
+      "https://images.unsplash.com/photo-1663353156236-b14aa42cf3e3?ixlib=rb-4.1.0&q=80&fm=jpg&crop=entropy&cs=srgb&w=1200&dl=tommaso-tani-KbXqqkvuAek-unsplash.jpg",
+    ],
     featured: true,
   },
   {
