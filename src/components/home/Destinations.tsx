@@ -24,7 +24,7 @@ export function Destinations() {
             />
             <Link
               href="/destinasi"
-              className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-terracotta hover:gap-2 hover:text-terracotta-dark transition-all duration-200"
+              className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface border border-border-warm text-sm font-semibold text-charcoal shadow-sm transition-all duration-300 ease-out hover:border-terracotta/30 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.97]"
             >
               Semua destinasi
               <ArrowRight className="w-4 h-4" />
@@ -48,10 +48,10 @@ export function Destinations() {
           ))}
         </div>
 
-        <div className="mt-8 md:hidden text-center">
+        <div className="mt-8 md:hidden">
           <Link
             href="/destinasi"
-            className="inline-flex items-center gap-1 text-sm font-medium text-terracotta"
+            className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-surface border border-border-warm text-sm font-semibold text-charcoal shadow-sm transition-all duration-300 ease-out hover:border-terracotta/30 hover:shadow-md active:scale-[0.97]"
           >
             Semua destinasi
             <ArrowRight className="w-4 h-4" />
