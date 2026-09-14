@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileBottomCTA } from "@/components/layout/MobileBottomCTA";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
+import { BackToTop } from "@/components/layout/BackToTop";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col bg-ivory text-charcoal">
         <Navbar />
         <ScrollToTop />
+        <BackToTop />
         <main className="flex-1">{children}</main>
         <Footer />
         <MobileBottomCTA />
