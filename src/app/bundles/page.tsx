@@ -15,7 +15,7 @@ export default function BundlesPage() {
     <div className="bg-ivory">
       <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll>
+          <RevealOnScroll y={16}>
             <SectionHeader
               eyebrow="Bundle Hemat"
               title="Paket kombinasi layanan"
@@ -29,13 +29,13 @@ export default function BundlesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {bundles.map((b, idx) => (
-              <RevealOnScroll key={b.id} delay={idx * 100}>
+              <RevealOnScroll key={b.id} delay={idx * 100} y={20}>
                 <BundleCard bundle={b} />
               </RevealOnScroll>
             ))}
           </div>
 
-          <RevealOnScroll y={20}>
+          <RevealOnScroll delay={300} y={20}>
             <div className="bg-ivory-dark border border-border-warm rounded-lg p-6 md:p-8 text-center">
               <h2 className="font-serif text-xl font-semibold text-charcoal mb-2">
                 Butuh kombinasi yang berbeda?

@@ -43,25 +43,29 @@ export default async function PackageDetailPage({
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/30 to-transparent" />
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 pb-10 md:pb-14">
-            <Link
-              href="/tour-packages"
-              className="inline-flex items-center gap-1.5 text-sm text-ivory/70 hover:text-ivory transition-colors mb-4"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Kembali ke paket tour
-            </Link>
-            <div className="flex items-center gap-2 mb-2">
-              <MapPin className="w-4 h-4 text-terracotta" />
-              <span className="text-sm font-medium text-ivory/70 uppercase tracking-wide">
-                {pkg.destination}
-              </span>
-              {pkg.bestSeller && (
-                <Badge variant="bestseller">Best Seller</Badge>
-              )}
-            </div>
-            <h1 className="font-serif text-3xl md:text-5xl font-semibold text-ivory leading-tight">
-              {pkg.name}
-            </h1>
+            <RevealOnScroll y={16}>
+              <Link
+                href="/tour-packages"
+                className="inline-flex items-center gap-1.5 text-sm text-ivory/70 hover:text-ivory transition-colors mb-4"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Kembali ke paket tour
+              </Link>
+            </RevealOnScroll>
+            <RevealOnScroll delay={80} y={16}>
+              <div className="flex items-center gap-2 mb-2">
+                <MapPin className="w-4 h-4 text-gold" />
+                <span className="text-sm font-semibold text-gold/90 uppercase tracking-wide">
+                  {pkg.destination}
+                </span>
+                {pkg.bestSeller && (
+                  <Badge variant="bestseller">Best Seller</Badge>
+                )}
+              </div>
+              <h1 className="font-serif text-3xl md:text-5xl font-semibold text-ivory leading-tight drop-shadow">
+                {pkg.name}
+              </h1>
+            </RevealOnScroll>
           </div>
         </div>
       </section>

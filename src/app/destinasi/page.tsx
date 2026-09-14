@@ -20,7 +20,7 @@ export default function DestinationsPage() {
     <div className="bg-ivory">
       <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll>
+          <RevealOnScroll y={16}>
             <SectionHeader
               eyebrow="Destinasi"
               title="Destinasi wisata di Turki"
@@ -33,7 +33,7 @@ export default function DestinationsPage() {
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {featured && (
-            <RevealOnScroll y={24}>
+            <RevealOnScroll delay={80} y={24}>
               <div className="mb-12 md:mb-16">
                 <DestinationCard destination={featured} variant="featured" />
               </div>

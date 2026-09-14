@@ -23,7 +23,7 @@ export default function ServicesPage() {
     <div className="bg-ivory">
       <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll>
+          <RevealOnScroll y={16}>
             <SectionHeader
               eyebrow="Layanan"
               title="Katalog Layanan Valora"
@@ -35,7 +35,9 @@ export default function ServicesPage() {
 
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ServicesClient categories={categories} allServices={services} />
+          <RevealOnScroll delay={120} y={20}>
+            <ServicesClient categories={categories} allServices={services} />
+          </RevealOnScroll>
         </div>
       </section>
     </div>

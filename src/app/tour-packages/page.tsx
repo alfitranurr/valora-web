@@ -16,7 +16,7 @@ export default function TourPackagesPage() {
     <div className="bg-ivory">
       <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll>
+          <RevealOnScroll y={16}>
             <SectionHeader
               eyebrow="Paket Tour"
               title="Paket tur pilihan ke destinasi terbaik Turki"
@@ -30,7 +30,7 @@ export default function TourPackagesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {tourPackages.map((pkg, idx) => (
-              <RevealOnScroll key={pkg.id} delay={idx * 100}>
+              <RevealOnScroll key={pkg.id} delay={idx * 100} y={20}>
                 <PackageCard pkg={pkg} />
               </RevealOnScroll>
             ))}
@@ -40,7 +40,7 @@ export default function TourPackagesPage() {
 
       <section className="py-12 md:py-16 bg-ivory-dark border-t border-border-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <RevealOnScroll>
+          <RevealOnScroll y={16}>
             <SectionHeader
               eyebrow="Bundle Hemat"
               title="Hemat lebih banyak dengan bundle"
@@ -50,7 +50,7 @@ export default function TourPackagesPage() {
           </RevealOnScroll>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {bundles.map((b, idx) => (
-              <RevealOnScroll key={b.id} delay={idx * 100}>
+              <RevealOnScroll key={b.id} delay={idx * 100} y={20}>
                 <BundleCard bundle={b} />
               </RevealOnScroll>
             ))}
