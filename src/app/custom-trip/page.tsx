@@ -15,11 +15,11 @@ export default function CustomTripPage() {
       <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <RevealOnScroll y={16}>
-            <SectionHeader
-              eyebrow="Custom Trip"
-              title="Customized Private Full Turkey Roadtrip"
-              description="Rancang rute keliling Turki sendiri sesuai impian dan tanggal liburan keluarga Anda. Armada VIP Mercedes-Benz eksklusif untuk grup Anda."
-            />
+          <SectionHeader
+            eyebrow="Custom Trip"
+            title="Private Roadtrip Keliling Turki"
+            description="Rancang rute keliling Turki sendiri sesuai impian dan tanggal liburan keluarga Anda. Armada VIP Mercedes-Benz eksklusif untuk grup Anda."
+          />
           </RevealOnScroll>
           <RevealOnScroll delay={120} y={12}>
             <p className="mt-4 text-sm text-warm-grey">
