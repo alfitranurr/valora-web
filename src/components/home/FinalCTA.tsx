@@ -29,14 +29,14 @@ export function FinalCTA() {
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/kalkulator"
-                  className="inline-flex items-center justify-center gap-2 bg-gold text-charcoal font-semibold rounded-lg px-6 py-3.5 text-sm transition-all hover:bg-gold-light hover:shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 bg-gold text-charcoal font-semibold rounded-lg px-6 py-3.5 text-sm shadow-sm transition-all duration-300 ease-out hover:bg-gold-light hover:shadow-md active:scale-[0.97]"
                 >
                   <Calculator className="w-4 h-4" />
                   Hitung Estimasi Biaya
                 </Link>
                 <Link
                   href="/custom-trip"
-                  className="inline-flex items-center justify-center gap-2 bg-charcoal/40 backdrop-blur text-ivory font-medium rounded-lg px-6 py-3.5 text-sm border border-ivory/30 transition-all hover:bg-charcoal/60 hover:border-gold/50"
+                  className="inline-flex items-center justify-center gap-2 bg-charcoal/40 backdrop-blur text-ivory font-semibold rounded-lg px-6 py-3.5 text-sm border border-ivory/30 transition-all duration-300 ease-out hover:bg-charcoal/60 hover:border-gold/50 hover:shadow-md active:scale-[0.97]"
                 >
                   <Route className="w-4 h-4" />
                   Rancang Custom Trip
@@ -47,7 +47,7 @@ export function FinalCTA() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-terracotta text-white font-medium rounded-lg px-6 py-3.5 text-sm transition-all hover:bg-terracotta-dark hover:shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 bg-terracotta text-white font-semibold rounded-lg px-6 py-3.5 text-sm shadow-sm transition-all duration-300 ease-out hover:bg-terracotta-dark hover:shadow-md active:scale-[0.97]"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Konsultasi WhatsApp

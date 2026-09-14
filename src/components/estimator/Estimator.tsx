@@ -230,7 +230,7 @@ export function Estimator() {
                   key={cat.id}
                   onClick={() => handleCategorySelect(cat.id)}
                   className={cn(
-                    "flex items-start gap-3 p-4 rounded-lg border text-left transition-all",
+                    "flex items-start gap-3 p-4 rounded-lg border text-left transition-all duration-200 active:scale-[0.98]",
                     "border-border-warm hover:border-terracotta hover:bg-terracotta/5",
                     category === cat.id && "border-terracotta bg-terracotta/5"
                   )}
@@ -261,7 +261,7 @@ export function Estimator() {
                   key={item.id}
                   onClick={() => handleItemSelect(item)}
                   className={cn(
-                    "w-full flex items-center justify-between gap-4 p-4 rounded-lg border text-left transition-all",
+                    "w-full flex items-center justify-between gap-4 p-4 rounded-lg border text-left transition-all duration-200 active:scale-[0.98]",
                     "border-border-warm hover:border-terracotta hover:bg-terracotta/5",
                     selectedItem?.id === item.id &&
                       "border-terracotta bg-terracotta/5"
@@ -309,7 +309,7 @@ export function Estimator() {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setDuration(Math.max(1, duration - 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal transition-colors"
+                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
                     aria-label="Kurangi durasi"
                   >
                     <Minus className="w-4 h-4" />
@@ -328,7 +328,7 @@ export function Estimator() {
                   />
                   <button
                     onClick={() => setDuration(Math.min(14, duration + 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal transition-colors"
+                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
                     aria-label="Tambah durasi"
                   >
                     <Plus className="w-4 h-4" />
@@ -345,7 +345,7 @@ export function Estimator() {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal transition-colors"
+                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
                     aria-label="Kurangi unit"
                   >
                     <Minus className="w-4 h-4" />
@@ -364,7 +364,7 @@ export function Estimator() {
                   />
                   <button
                     onClick={() => setQuantity(Math.min(10, quantity + 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal transition-colors"
+                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
                     aria-label="Tambah unit"
                   >
                     <Plus className="w-4 h-4" />
@@ -381,7 +381,7 @@ export function Estimator() {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setPax(Math.max(1, pax - 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal transition-colors"
+                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
                     aria-label="Kurangi peserta"
                   >
                     <Minus className="w-4 h-4" />
@@ -400,7 +400,7 @@ export function Estimator() {
                   />
                   <button
                     onClick={() => setPax(Math.min(50, pax + 1))}
-                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal transition-colors"
+                    className="w-10 h-10 rounded-lg border border-border-warm flex items-center justify-center hover:border-charcoal hover:bg-charcoal/5 transition-all duration-200 active:scale-[0.90]"
                     aria-label="Tambah peserta"
                   >
                     <Plus className="w-4 h-4" />
@@ -462,10 +462,10 @@ export function Estimator() {
                     key={addon.id}
                     onClick={() => toggleAddon(addon.id)}
                     className={cn(
-                      "w-full flex items-start gap-4 p-4 rounded-lg border text-left transition-all",
-                      isSelected
-                        ? "border-terracotta bg-terracotta/5"
-                        : "border-border-warm hover:border-terracotta/40"
+                    "w-full flex items-start gap-4 p-4 rounded-lg border text-left transition-all duration-200 active:scale-[0.98]",
+                    isSelected
+                      ? "border-terracotta bg-terracotta/5"
+                      : "border-border-warm hover:border-terracotta/40"
                     )}
                   >
                     <div

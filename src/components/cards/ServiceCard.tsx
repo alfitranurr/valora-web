@@ -45,7 +45,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
           />
           <Link
             href={`/services/${service.slug}`}
-            className="inline-flex items-center gap-1 text-sm font-medium text-terracotta hover:text-terracotta-dark transition-colors"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-terracotta hover:gap-2 hover:text-terracotta-dark transition-all duration-200"
           >
             Detail
             <ArrowRight className="w-3.5 h-3.5" />

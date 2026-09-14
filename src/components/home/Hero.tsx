@@ -45,7 +45,7 @@ export function Hero() {
               >
                 <Link
                   href="/kalkulator"
-                  className="inline-flex items-center justify-center gap-2 bg-ivory text-charcoal font-medium rounded-lg px-6 py-3.5 text-sm transition-all hover:bg-white hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ivory focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+                  className="inline-flex items-center justify-center gap-2 bg-gold text-charcoal font-semibold rounded-lg px-6 py-3.5 text-sm shadow-sm transition-all duration-300 ease-out hover:bg-gold-light hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
                 >
                   <Calculator className="w-4 h-4" />
                   Hitung Estimasi Biaya
@@ -56,7 +56,7 @@ export function Hero() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-terracotta text-white font-medium rounded-lg px-6 py-3.5 text-sm transition-all hover:bg-terracotta-dark hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+                  className="inline-flex items-center justify-center gap-2 bg-terracotta text-white font-semibold rounded-lg px-6 py-3.5 text-sm shadow-sm transition-all duration-300 ease-out hover:bg-terracotta-dark hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Konsultasi via WhatsApp

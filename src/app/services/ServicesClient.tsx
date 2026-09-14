@@ -30,10 +30,10 @@ export default function ServicesClient({
             key={cat.id}
             onClick={() => setActive(cat.id)}
             className={cn(
-              "px-4 py-2 text-sm font-medium rounded-lg border transition-all",
+              "px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 active:scale-[0.97]",
               active === cat.id
-                ? "bg-charcoal text-ivory border-charcoal"
-                : "bg-surface text-charcoal border-border-warm hover:border-charcoal/30"
+                ? "bg-charcoal text-ivory border-charcoal shadow-sm"
+                : "bg-surface text-charcoal border-border-warm hover:border-charcoal/30 hover:shadow-sm"
             )}
           >
             {cat.label}

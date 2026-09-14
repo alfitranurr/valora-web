@@ -19,9 +19,12 @@ interface ButtonProps {
 }
 
 const variantStyles = {
-  primary: "bg-charcoal text-ivory hover:bg-charcoal-light",
-  secondary: "bg-terracotta text-white hover:bg-terracotta-dark",
-  outline: "border border-charcoal/20 text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-ivory",
+  primary:
+    "bg-charcoal text-ivory shadow-sm hover:bg-charcoal-light hover:shadow-md",
+  secondary:
+    "bg-terracotta text-white shadow-sm hover:bg-terracotta-dark hover:shadow-md",
+  outline:
+    "border border-charcoal/20 text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-ivory hover:shadow-sm",
   ghost: "text-charcoal hover:bg-charcoal/5",
 };
 
@@ -47,7 +50,7 @@ export function Button({
   ariaLabel,
 }: ButtonProps) {
   const baseClass = cn(
-    "inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed",
+    "inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-300 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100",
     variantStyles[variant],
     sizeStyles[size],
     className

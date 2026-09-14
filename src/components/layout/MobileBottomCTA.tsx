@@ -17,7 +17,7 @@ export function MobileBottomCTA() {
       <div className="flex items-center gap-3">
         <Link
           href="/kalkulator"
-          className="flex-1 inline-flex items-center justify-center gap-2 bg-gold text-charcoal font-semibold text-sm rounded-lg px-4 py-3 transition-colors hover:bg-gold-light"
+          className="flex-1 inline-flex items-center justify-center gap-2 bg-gold text-charcoal font-semibold text-sm rounded-lg px-4 py-3 shadow-sm transition-all duration-300 ease-out hover:bg-gold-light hover:shadow-md active:scale-[0.97]"
         >
           <Calculator className="w-4 h-4" />
           Hitung Biaya
@@ -27,7 +27,7 @@ export function MobileBottomCTA() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Konsultasi via WhatsApp"
-          className="inline-flex items-center justify-center gap-2 bg-terracotta text-white font-medium text-sm rounded-lg px-4 py-3 transition-colors hover:bg-terracotta-dark"
+          className="inline-flex items-center justify-center gap-2 bg-terracotta text-white font-semibold text-sm rounded-lg px-4 py-3 shadow-sm transition-all duration-300 ease-out hover:bg-terracotta-dark hover:shadow-md active:scale-[0.97]"
         >
           <MessageCircle className="w-4 h-4" />
           WhatsApp

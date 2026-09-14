@@ -20,7 +20,7 @@ export function FeaturedServices() {
             />
             <Link
               href="/services"
-              className="hidden md:inline-flex items-center gap-1 text-sm font-medium text-terracotta hover:text-terracotta-dark transition-colors"
+              className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-terracotta hover:gap-2 hover:text-terracotta-dark transition-all duration-200"
             >
               Lihat semua layanan
               <ArrowRight className="w-4 h-4" />

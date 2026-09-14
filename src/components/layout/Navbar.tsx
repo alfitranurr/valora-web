@@ -75,7 +75,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 -mr-2 text-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta rounded"
+            className="lg:hidden p-2 -mr-2 text-charcoal rounded-lg transition-all duration-200 active:scale-[0.95] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta hover:bg-charcoal/5"
             aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
             aria-expanded={mobileOpen}
           >
