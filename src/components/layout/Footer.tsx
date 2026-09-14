@@ -4,13 +4,10 @@ import { SITE_CONFIG } from "@/data/config";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { KursDisplay } from "@/components/shared/KursDisplay";
 
-const footerLinks = [
-  { href: "/destinasi", label: "Destination" },
-  { href: "/tour-packages", label: "Tour Packages" },
-  { href: "/services", label: "Services" },
-  { href: "/custom-trip", label: "Custom Trip" },
-  { href: "/kalkulator", label: "Book" },
+const informationLinks = [
   { href: "/pembayaran", label: "Kebijakan Pembayaran" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/ketentuan", label: "Syarat & Ketentuan" },
 ];
 
 export function Footer() {
@@ -42,10 +39,10 @@ export function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold text-gold mb-4 uppercase tracking-wide">
-              Navigasi
+              Informasi
             </h3>
             <ul className="space-y-3">
-              {footerLinks.map((link) => (
+              {informationLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
