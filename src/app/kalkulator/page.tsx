@@ -3,9 +3,9 @@ import { Estimator } from "@/components/estimator/Estimator";
 import { KursDisplay } from "@/components/shared/KursDisplay";
 
 export const metadata = {
-  title: "Kalkulator Estimasi Biaya — Valora Tour & Travel",
+  title: "Pesan Trip — Valora Tour & Travel",
   description:
-    "Hitung estimasi biaya perjalanan ke Turki secara transparan dalam USD, EUR, dan IDR. Pilih layanan, durasi, dan add-on untuk melihat estimasi instan.",
+    "Pilih layanan, sesuaikan perjalanan, lihat estimasi biaya, dan kirim request ke Admin Valora untuk konfirmasi.",
 };
 
 export default function KalkulatorPage() {
@@ -14,9 +14,9 @@ export default function KalkulatorPage() {
       <section className="pt-16 md:pt-20 pb-12 border-b border-border-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Kalkulator"
-            title="Estimasi biaya perjalanan ke Turki"
-            description="Pilih layanan, sesuaikan detail, dan lihat estimasi instan dalam USD, EUR, dan IDR. Tanpa komitmen pembayaran awal."
+            eyebrow="Pesan Trip"
+            title="Pilih layanan, lihat estimasi, kirim request"
+            description="Pilih layanan, sesuaikan detail, dan lihat estimasi instan dalam USD, EUR, dan IDR. Lalu kirim request ke Admin Valora untuk konfirmasi."
           />
           <p className="mt-4 text-sm text-warm-grey">
             <KursDisplay /> · Estimasi awal — harga final dikonfirmasi oleh Admin Valora.

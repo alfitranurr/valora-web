@@ -18,7 +18,7 @@ const steps = [
   {
     number: "03",
     title: "Lihat estimasi biaya",
-    description: "Kalkulator menampilkan estimasi dalam USD, EUR, dan IDR secara transparan.",
+    description: "Lihat estimasi dalam USD, EUR, dan IDR secara transparan, lalu kirim request ke Admin Valora.",
     accent: "green",
   },
   {

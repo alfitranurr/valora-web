@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Calculator, MessageCircle } from "lucide-react";
+import { ShoppingBag, MessageCircle } from "lucide-react";
 import { generalConsultationUrl } from "@/lib/whatsapp";
 
 export function MobileBottomCTA() {
@@ -19,8 +19,8 @@ export function MobileBottomCTA() {
           href="/kalkulator"
           className="flex-1 inline-flex items-center justify-center gap-2 bg-gold text-charcoal font-semibold text-sm rounded-lg px-4 py-3 shadow-sm transition-all duration-300 ease-out hover:bg-gold-light hover:shadow-md active:scale-[0.97]"
         >
-          <Calculator className="w-4 h-4" />
-          Hitung Biaya
+          <ShoppingBag className="w-4 h-4" />
+          Pesan Trip
         </Link>
         <a
           href={generalConsultationUrl()}

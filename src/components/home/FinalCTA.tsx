@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calculator, MessageCircle, Route } from "lucide-react";
+import { ShoppingBag, MessageCircle, Route } from "lucide-react";
 import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { KursDisplay } from "@/components/shared/KursDisplay";
@@ -23,16 +23,15 @@ export function FinalCTA() {
                 Siap merencanakan perjalanan Turki Anda?
               </h2>
               <p className="mt-4 text-ivory/70 text-base md:text-lg max-w-xl mx-auto">
-                Hitung estimasi biaya, rancang custom itinerary, atau langsung
-                konsultasi dengan Admin Valora.
+                Pilih layanan, lihat estimasi, atau rancang custom itinerary — langsung konfirmasi via WhatsApp.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/kalkulator"
                   className="inline-flex items-center justify-center gap-2 bg-gold text-charcoal font-semibold rounded-lg px-6 py-3.5 text-sm shadow-sm transition-all duration-300 ease-out hover:bg-gold-light hover:shadow-md active:scale-[0.97]"
                 >
-                  <Calculator className="w-4 h-4" />
-                  Hitung Estimasi Biaya
+                  <ShoppingBag className="w-4 h-4" />
+                  Pesan Trip
                 </Link>
                 <Link
                   href="/custom-trip"

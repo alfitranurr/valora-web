@@ -131,7 +131,7 @@ export default async function PackageDetailPage({
 
                 <div className="flex flex-col gap-3">
                   <Button href="/kalkulator" variant="primary" size="md" className="w-full">
-                    Hitung Biaya
+                    Pesan Sekarang
                   </Button>
                   <WhatsAppButton
                     url={whatsappUrl}

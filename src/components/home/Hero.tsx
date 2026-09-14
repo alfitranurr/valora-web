@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calculator, MessageCircle } from "lucide-react";
+import { ShoppingBag, MessageCircle } from "lucide-react";
 import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
 import { SITE_CONFIG } from "@/data/config";
 
@@ -47,8 +47,8 @@ export function Hero() {
                   href="/kalkulator"
                   className="inline-flex items-center justify-center gap-2 bg-gold text-charcoal font-semibold rounded-lg px-6 py-3.5 text-sm shadow-sm transition-all duration-300 ease-out hover:bg-gold-light hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
                 >
-                  <Calculator className="w-4 h-4" />
-                  Hitung Estimasi Biaya
+                  <ShoppingBag className="w-4 h-4" />
+                  Pesan Trip
                 </Link>
                 <a
                   href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(

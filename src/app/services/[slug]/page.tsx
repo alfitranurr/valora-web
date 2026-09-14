@@ -101,7 +101,7 @@ export default async function ServiceDetailPage({
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button href="/kalkulator" variant="primary" size="md">
-                  Hitung Biaya
+                  Pesan Sekarang
                 </Button>
                 <WhatsAppButton url={whatsappUrl} variant="secondary" size="md" />
               </div>
