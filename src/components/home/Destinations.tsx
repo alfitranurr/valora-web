@@ -24,10 +24,12 @@ export function Destinations() {
             />
             <Link
               href="/destinasi"
-              className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface border border-border-warm text-sm font-semibold text-charcoal shadow-sm transition-all duration-300 ease-out hover:border-terracotta/30 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.97]"
+              className="group hidden md:inline-flex items-center gap-3 pl-5 pr-2 py-2 rounded-xl bg-transparent border border-border-warm text-sm font-semibold text-charcoal transition-all duration-300 ease-out hover:border-terracotta/40 hover:bg-surface hover:shadow-sm active:scale-[0.97]"
             >
               Semua destinasi
-              <ArrowRight className="w-4 h-4" />
+              <span className="w-8 h-8 rounded-lg bg-charcoal/5 flex items-center justify-center transition-all duration-300 group-hover:bg-terracotta">
+                <ArrowRight className="w-4 h-4 text-charcoal transition-colors duration-300 group-hover:text-white" />
+              </span>
             </Link>
           </div>
         </RevealOnScroll>
@@ -51,10 +53,12 @@ export function Destinations() {
         <div className="mt-8 md:hidden">
           <Link
             href="/destinasi"
-            className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-surface border border-border-warm text-sm font-semibold text-charcoal shadow-sm transition-all duration-300 ease-out hover:border-terracotta/30 hover:shadow-md active:scale-[0.97]"
+            className="group w-full inline-flex items-center justify-between pl-5 pr-2 py-2 rounded-xl bg-transparent border border-border-warm text-sm font-semibold text-charcoal transition-all duration-300 ease-out hover:border-terracotta/40 hover:bg-surface hover:shadow-sm active:scale-[0.97]"
           >
             Semua destinasi
-            <ArrowRight className="w-4 h-4" />
+            <span className="w-8 h-8 rounded-lg bg-charcoal/5 flex items-center justify-center transition-all duration-300 group-hover:bg-terracotta">
+              <ArrowRight className="w-4 h-4 text-charcoal transition-colors duration-300 group-hover:text-white" />
+            </span>
           </Link>
         </div>
       </div>
