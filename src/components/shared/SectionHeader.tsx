@@ -6,6 +6,7 @@ interface SectionHeaderProps {
   description?: string;
   align?: "left" | "center";
   className?: string;
+  dark?: boolean;
 }
 
 export function SectionHeader({
@@ -14,6 +15,7 @@ export function SectionHeader({
   description,
   align = "left",
   className,
+  dark = false,
 }: SectionHeaderProps) {
   return (
     <div
@@ -31,11 +33,21 @@ export function SectionHeader({
           </p>
         </div>
       )}
-      <h2 className="font-serif text-3xl md:text-4xl font-semibold text-charcoal leading-tight">
+      <h2
+        className={cn(
+          "font-serif text-3xl md:text-4xl font-semibold leading-tight",
+          dark ? "text-ivory" : "text-charcoal"
+        )}
+      >
         {title}
       </h2>
       {description && (
-        <p className="mt-3 text-warm-grey text-base md:text-lg leading-relaxed">
+        <p
+          className={cn(
+            "mt-3 text-base md:text-lg leading-relaxed",
+            dark ? "text-ivory/70" : "text-warm-grey"
+          )}
+        >
           {description}
         </p>
       )}

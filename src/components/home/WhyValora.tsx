@@ -58,6 +58,7 @@ export function WhyValora() {
             title="Mengapa wisatawan memilih Valora Tour?"
             description="Komitmen kami menghadirkan pengalaman liburan di Turki yang aman, nyaman, berkelas, dan bebas rasa khawatir."
             align="center"
+            dark
             className="mb-12"
           />
         </RevealOnScroll>
