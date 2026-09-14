@@ -38,7 +38,6 @@ export function HowItWorks() {
             eyebrow="Cara Kerja"
             title="Empat langkah menuju Turki"
             description="Proses yang sederhana dan transparan — dari eksplorasi hingga konfirmasi."
-            align="center"
             className="mb-12"
           />
         </RevealOnScroll>
