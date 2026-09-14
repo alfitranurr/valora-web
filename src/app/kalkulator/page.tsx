@@ -17,7 +17,7 @@ export default function KalkulatorPage() {
           <RevealOnScroll y={16}>
             <SectionHeader
               eyebrow="Book"
-              title="Pilih layanan, lihat estimasi, kirim request"
+              title="Pilih Layanan, Lihat Estimasi, Kirim Request"
               description="Pilih layanan, sesuaikan detail, dan lihat estimasi instan dalam USD, EUR, dan IDR. Lalu kirim request ke Admin Valora untuk konfirmasi."
             />
           </RevealOnScroll>
