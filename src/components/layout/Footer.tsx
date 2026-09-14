@@ -5,7 +5,7 @@ import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { KursDisplay } from "@/components/shared/KursDisplay";
 
 const footerLinks = [
-  { href: "/destinasi", label: "Destinasi" },
+  { href: "/destinasi", label: "Destination" },
   { href: "/tour-packages", label: "Tour Packages" },
   { href: "/services", label: "Services" },
   { href: "/custom-trip", label: "Custom Trip" },

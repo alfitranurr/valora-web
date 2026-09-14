@@ -8,7 +8,7 @@ import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/destinasi", label: "Destinasi" },
+  { href: "/destinasi", label: "Destination" },
   { href: "/tour-packages", label: "Tour Packages" },
   { href: "/services", label: "Services" },
   { href: "/custom-trip", label: "Custom Trip" },
