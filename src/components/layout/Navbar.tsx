@@ -12,7 +12,7 @@ const navLinks = [
   { href: "/tour-packages", label: "Tour Packages" },
   { href: "/services", label: "Services" },
   { href: "/custom-trip", label: "Custom Trip" },
-  { href: "/kalkulator", label: "Pesan" },
+  { href: "/kalkulator", label: "Book" },
 ];
 
 export function Navbar() {
